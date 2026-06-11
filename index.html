@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bônus 3 — Acalmando a Voz que Mente | Ana Luiza Medeiros</title>
+<style>
+  :root {
+    --bg:#FBF8F3; --terracota:#C4785A; --terracota-light:#F0DDD5;
+    --salvia:#7A9B76; --salvia-light:#E8F0E6; --grafite:#2C2C2A;
+    --cream:#F5EFE6; --linha:#D9BFB5; --white:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--grafite);font-family:Arial,'DM Sans',sans-serif;font-size:16px;line-height:1.7}
+
+  .header{background:var(--grafite);color:var(--white);padding:36px 24px 28px;text-align:center}
+  .header .badge{display:inline-block;background:var(--terracota);color:var(--white);font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+  .header h1{font-family:Georgia,serif;font-size:clamp(22px,5vw,34px);font-weight:normal;font-style:italic;color:var(--terracota-light);line-height:1.3;margin-bottom:8px}
+  .header p{color:#aaa;font-size:13px}
+
+  .nav{position:sticky;top:0;z-index:100;background:var(--grafite);border-top:1px solid #3a3a38;display:flex;overflow-x:auto;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{flex-shrink:0;color:#aaa;text-decoration:none;padding:12px 16px;font-size:13px;white-space:nowrap;transition:color .2s,border-bottom .2s;border-bottom:2px solid transparent}
+  .nav a:hover,.nav a.active{color:var(--terracota-light);border-bottom:2px solid var(--terracota)}
+
+  .progress-bar-wrap{background:#e0dbd4;height:5px;position:sticky;top:43px;z-index:99}
+  .progress-bar-fill{height:5px;background:linear-gradient(90deg,var(--terracota),var(--salvia));width:0%;transition:width .5s ease}
+
+  .section{padding:48px 20px;max-width:720px;margin:0 auto}
+  .section+.section{border-top:1px solid var(--linha)}
+
+  .acolhimento-card{background:var(--cream);border-left:4px solid var(--terracota);border-radius:12px;padding:28px 24px;margin-bottom:28px}
+  .acolhimento-card h2{font-family:Georgia,serif;font-size:20px;color:var(--terracota);margin-bottom:12px}
+  .acolhimento-card p{color:#555;margin-bottom:10px}
+
+  .how-to{display:grid;gap:14px;margin-top:24px}
+  .how-step{display:flex;gap:16px;align-items:flex-start;background:var(--white);border-radius:10px;padding:16px 18px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .how-num{background:var(--terracota);color:var(--white);font-weight:bold;font-size:14px;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .how-step p{font-size:14px;color:#555}
+
+  .trilha-tip{background:var(--salvia-light);border-radius:10px;padding:14px 18px;margin-top:20px;font-size:14px;color:#4a6b47}
+  .trilha-tip strong{display:block;margin-bottom:4px}
+  .btn-ouvir-tip{display:inline-block;margin-top:10px;background:var(--salvia);color:var(--white);border:none;border-radius:20px;padding:7px 18px;font-size:13px;font-weight:bold;cursor:pointer;font-family:Arial;text-decoration:none}
+
+  .phase-header{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+  .phase-num{background:var(--terracota);color:var(--white);font-family:Georgia,serif;font-size:22px;font-style:italic;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .phase-title h2{font-family:Georgia,serif;font-size:20px;color:var(--grafite)}
+  .phase-title span{font-size:13px;color:var(--terracota)}
+
+  .body-card{background:var(--terracota-light);border-radius:12px;padding:22px 20px;margin-bottom:20px}
+  .body-card p{color:#5a3a2a;margin-bottom:8px}
+  .body-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:16px}
+  .body-item{background:var(--white);border-radius:10px;padding:14px;text-align:center}
+  .body-item strong{display:block;color:var(--terracota);font-size:14px;margin-bottom:4px}
+  .body-item span{font-size:13px;color:#666}
+
+  /* BREATHING */
+  .breath-wrap{display:flex;flex-direction:column;align-items:center;padding:32px 20px;background:var(--grafite);border-radius:16px;margin:24px 0}
+  .breath-circle-outer{width:140px;height:140px;border-radius:50%;background:rgba(196,120,90,.15);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:transform 4s ease-in-out}
+  .breath-circle-inner{width:90px;height:90px;border-radius:50%;background:var(--terracota);display:flex;align-items:center;justify-content:center;color:var(--white);font-size:13px;font-weight:bold;text-align:center;line-height:1.3;white-space:pre-line}
+  .breath-steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+  .breath-step{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);color:#aaa;border-radius:8px;padding:10px 14px;font-size:13px;text-align:center;transition:all .3s;min-width:90px}
+  .breath-step.active{background:var(--terracota);border-color:var(--terracota);color:var(--white)}
+  .breath-step strong{display:block;font-size:16px}
+  .breath-counter{font-size:52px;font-weight:bold;color:var(--terracota-light);text-align:center;margin-bottom:8px;min-height:64px}
+  .breath-msg{color:#ccc;font-style:italic;font-size:14px;text-align:center;min-height:20px;margin-bottom:16px}
+  .breath-btn{background:var(--terracota);color:var(--white);border:none;border-radius:24px;padding:12px 32px;font-size:15px;cursor:pointer;font-weight:bold;transition:background .2s;font-family:Arial}
+  .breath-btn:hover{background:#b06a4e}
+  .breath-cycles{color:#aaa;font-size:13px;margin-top:10px;min-height:20px}
+
+  /* GROUNDING */
+  .grounding-cards{display:grid;gap:14px;margin:20px 0}
+  .ground-card{background:var(--white);border-radius:12px;padding:18px 20px;display:flex;align-items:flex-start;gap:16px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .ground-num{font-family:Georgia,serif;font-size:32px;font-weight:bold;color:var(--terracota);min-width:40px;line-height:1}
+  .ground-content{flex:1}
+  .ground-content h4{font-size:15px;color:var(--grafite);margin-bottom:6px}
+  .ground-content textarea{width:100%;min-height:60px;border:1px solid var(--linha);border-radius:8px;padding:10px 12px;font-size:14px;font-family:Arial,sans-serif;background:var(--bg);color:var(--grafite);resize:vertical;outline:none;transition:border-color .2s}
+  .ground-content textarea:focus{border-color:var(--terracota)}
+
+  .viz-card{background:var(--salvia-light);border-left:4px solid var(--salvia);border-radius:12px;padding:24px 20px;margin-bottom:20px}
+  .viz-card p{color:#3a5a38;margin-bottom:10px}
+  .field-label{font-size:14px;font-weight:bold;color:var(--grafite);margin-bottom:8px;margin-top:20px;display:block}
+  .field-input{width:100%;border:1px solid var(--linha);border-radius:8px;padding:10px 12px;font-size:14px;font-family:Arial,sans-serif;background:var(--white);color:var(--grafite);outline:none;transition:border-color .2s}
+  .field-input:focus{border-color:var(--salvia)}
+  textarea.field-input{min-height:80px;resize:vertical}
+
+  .afirmacoes{display:grid;gap:12px;margin:20px 0}
+  .afirmacao-card{background:var(--white);border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:pointer;transition:background .2s}
+  .afirmacao-card:hover{background:var(--cream)}
+  .afirmacao-card.checked{background:var(--salvia-light)}
+  .afirmacao-card input[type=checkbox]{width:18px;height:18px;accent-color:var(--salvia);flex-shrink:0;cursor:pointer}
+  .afirmacao-card span{font-style:italic;color:#444;font-size:15px}
+
+  .compromisso-card{background:var(--grafite);border-radius:16px;padding:32px 24px;text-align:center;margin-top:32px}
+  .compromisso-card h3{font-family:Georgia,serif;font-size:22px;color:var(--terracota-light);font-style:italic;font-weight:bold;margin-bottom:12px}
+  .compromisso-card p{color:#aaa;font-size:14px;margin-bottom:24px}
+  .compromisso-btn{background:var(--terracota);color:var(--white);border:none;border-radius:28px;padding:14px 40px;font-size:16px;font-weight:bold;cursor:pointer;transition:background .2s;font-family:Arial}
+  .compromisso-btn:hover{background:#b06a4e}
+  #compromisso-feito{display:none;color:#7fcf7a;font-size:15px;margin-top:16px;font-style:italic}
+  #btn-rever{display:none;background:transparent;color:var(--terracota-light);border:1px solid var(--terracota);border-radius:20px;padding:8px 20px;font-size:13px;cursor:pointer;margin-top:12px;font-family:Arial}
+
+  /* TRILHAS */
+  .trilhas{display:grid;gap:16px;margin-top:20px}
+  .trilha-card{background:var(--white);border-radius:14px;padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+  .trilha-card-top{display:flex;align-items:center;gap:14px}
+  .trilha-icon{background:var(--terracota-light);border-radius:10px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+  .trilha-info{flex:1}
+  .trilha-info strong{display:block;font-size:14px;color:var(--grafite);margin-bottom:2px}
+  .trilha-info span{font-size:12px;color:#888}
+  .trilha-open-btn{background:var(--terracota);color:var(--white);border:none;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:bold;cursor:pointer;white-space:nowrap;transition:background .2s;font-family:Arial;flex-shrink:0}
+  .trilha-open-btn:hover{background:#b06a4e}
+  .trilha-open-btn.ativo{background:var(--salvia)}
+
+  .trilha-player{margin-top:14px;background:var(--grafite);border-radius:10px;padding:14px 16px;display:none}
+  .trilha-player.open{display:block}
+  .player-label{font-size:12px;color:#ccc;font-style:italic;margin-bottom:10px}
+  .player-controls{display:flex;align-items:center;gap:12px}
+  .player-playbtn{background:var(--terracota);color:var(--white);border:none;border-radius:50%;width:38px;height:38px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
+  .player-playbtn:hover{background:#b06a4e}
+  .player-track{flex:1}
+  .player-prog-wrap{background:rgba(255,255,255,.15);border-radius:4px;height:5px;margin-bottom:6px;position:relative;overflow:hidden}
+  .player-prog-fill{background:var(--terracota);height:5px;width:0%;border-radius:4px;transition:width 1s linear}
+  .player-time{font-size:11px;color:#aaa}
+  .player-vol-row{display:flex;align-items:center;gap:8px;margin-top:10px}
+  .player-vol-row span{font-size:11px;color:#888}
+  .player-vol-row input{flex:1;accent-color:var(--terracota)}
+
+  .trilha-intro{background:var(--cream);border-left:4px solid var(--salvia);border-radius:0 10px 10px 0;padding:18px 20px;margin-bottom:24px;color:#444}
+  .trilha-intro p{margin-bottom:8px;font-size:14px;line-height:1.7}
+  .trilha-intro p:last-child{margin-bottom:0;font-style:italic;color:#5a6b58}
+  .pix-cards{display:grid;gap:14px;margin-top:20px}
+  .pix-card{background:var(--salvia-light);border:1px solid #c8ddc6;border-radius:12px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+  .pix-badge{flex-shrink:0;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:bold;text-align:center;line-height:1.3;min-width:64px}
+  .b-432  {background:#5a7a57;color:#fff}
+  .b-alpha{background:#7A9B76;color:#fff}
+  .b-theta{background:#7A9B76;color:#fff}
+  .b-528  {background:#7A9B76;color:#fff}
+  .pix-info{flex:1}
+  .pix-info strong{display:block;font-size:14px;color:var(--grafite);margin-bottom:2px}
+  .pix-info span{display:block;font-size:12px;color:#888;margin-bottom:4px}
+  .pix-info p{font-size:13px;color:#4a6b47;font-style:italic;margin-bottom:6px}
+  .pix-info a{font-size:13px;color:var(--terracota);font-weight:bold;text-decoration:none}
+  .pix-info a:hover{text-decoration:underline}
+
+  /* remover estilos órfãos — não ocultar audio */
+  .trilha-open-btn{display:none}
+
+  .encerramento{background:var(--terracota-light);border-radius:16px;padding:36px 24px;text-align:center;margin-top:0}
+
+  .plano-table{width:100%;border-collapse:collapse;margin-top:20px}
+  .plano-table th{background:var(--grafite);color:var(--white);padding:12px 14px;font-size:13px;text-align:left}
+  .plano-table th:first-child{border-radius:8px 0 0 0}
+  .plano-table th:last-child{border-radius:0 8px 0 0}
+  .plano-table td{padding:4px 8px;background:var(--white);border-bottom:1px solid var(--linha)}
+  .plano-table tr:last-child td{border-bottom:none}
+  .plano-table td:first-child{font-weight:bold;color:var(--terracota);width:80px;font-size:14px;padding:10px 14px}
+  .plano-table input[type=text]{width:100%;border:none;background:transparent;font-size:14px;font-family:Arial,sans-serif;color:var(--grafite);padding:8px 4px;outline:none}
+  .plano-table input[type=text]::placeholder{color:#bbb}
+
+  .med-section-title{font-family:Georgia,serif;font-size:16px;color:var(--grafite);margin:28px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--linha)}
+  .med-cards{display:grid;gap:14px}
+  .med-card{background:var(--white);border-radius:12px;padding:16px 18px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .med-card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px}
+  .med-num{background:var(--salvia);color:var(--white);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;flex-shrink:0}
+  .med-card h4{font-size:14px;color:var(--grafite)}
+  .med-card p{font-size:13px;color:#666;margin-bottom:10px}
+  .med-card a{display:inline-block;background:var(--salvia-light);color:var(--salvia);border:1px solid var(--salvia);text-decoration:none;font-size:12px;font-weight:bold;padding:6px 14px;border-radius:20px;transition:all .2s}
+  .med-card a:hover{background:var(--salvia);color:var(--white)}
+
+  /* MEDITAÇÃO GUIADA */
+  .meditacao-card{background:linear-gradient(135deg,#2C2C2A 0%,#3d2a22 100%);border:2px solid var(--terracota);border-radius:16px;padding:26px 22px;margin-top:32px;margin-bottom:24px}
+  .meditacao-header{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+  .meditacao-icon{background:var(--terracota);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;box-shadow:0 0 16px rgba(196,120,90,.4)}
+  .meditacao-header strong{display:block;color:var(--terracota-light);font-size:15px;font-weight:bold;margin-bottom:3px;letter-spacing:.3px}
+  .meditacao-header span{font-size:12px;color:#aaa}
+  .meditacao-desc{font-size:14px;color:#ddd;line-height:1.7;margin-bottom:10px}
+  .meditacao-instrucao{font-size:13px;color:var(--terracota-light);font-style:italic;background:rgba(196,120,90,.12);border-left:3px solid var(--terracota);padding:10px 14px;border-radius:0 8px 8px 0;line-height:1.6}
+
+  /* PLAYERS NAS FASES — garantir visibilidade */
+  .fase-player{background:var(--grafite);border-radius:12px;padding:16px 18px;margin-top:20px;display:block!important}
+  .fase-player-info{display:flex;flex-direction:column;gap:2px;margin-bottom:4px}
+  .fase-player-titulo{font-size:14px;font-weight:bold;color:var(--terracota-light)}
+  .fase-player-desc{font-size:12px;color:#aaa;font-style:italic}
+  .fase-player audio{width:100%;height:36px;border-radius:8px}
+  .encerramento h3{font-family:Georgia,serif;font-size:22px;color:var(--grafite);font-style:italic;margin-bottom:14px}
+  .encerramento p{color:#5a3a2a;margin-bottom:18px;font-size:15px}
+  .enc-disclaimer{font-size:12px;color:#888;font-style:italic;margin-top:14px}
+  .workbook-btn{display:inline-block;background:var(--grafite);color:var(--white);text-decoration:none;padding:14px 36px;border-radius:28px;font-weight:bold;font-size:15px;margin-top:10px;transition:background .2s}
+  .workbook-btn:hover{background:#444}
+
+  .save-fab{position:fixed;bottom:24px;right:20px;background:var(--grafite);color:var(--white);border:none;border-radius:28px;padding:12px 20px;font-size:13px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:200;transition:background .2s;font-family:Arial}
+  .save-fab:hover{background:var(--terracota)}
+  .print-fab{position:fixed;bottom:24px;right:130px;background:var(--salvia);color:var(--white);border:none;border-radius:28px;padding:12px 20px;font-size:13px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:200;transition:background .2s;font-family:Arial}
+  .print-fab:hover{background:#5e7d5b}
+
+  /* CELEBRATION */
+  #cel-overlay{visibility:hidden;opacity:0;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;transition:opacity .35s,visibility .35s}
+  #cel-overlay.show{visibility:visible;opacity:1}
+  .cel-box{background:var(--white);border-radius:20px;padding:40px 32px;max-width:420px;width:100%;text-align:center}
+  .cel-emoji{font-size:56px;margin-bottom:16px;line-height:1}
+  .cel-box h2{font-family:Georgia,serif;font-size:19px;color:var(--grafite);font-style:italic;margin-bottom:10px;line-height:1.5}
+  .cel-box p{color:#666;font-size:14px;margin-bottom:24px}
+  .cel-btn-ok{background:var(--terracota);color:var(--white);border:none;border-radius:24px;padding:13px 0;font-size:15px;font-weight:bold;cursor:pointer;font-family:Arial;width:100%;margin-bottom:10px}
+  .cel-btn-replay{background:transparent;color:var(--terracota);border:2px solid var(--terracota);border-radius:24px;padding:10px 0;font-size:14px;cursor:pointer;font-family:Arial;width:100%}
+
+  .confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:999}
+
+  /* PLAYER NAS FASES */
+  .fase-player{background:var(--grafite);border-radius:12px;padding:16px 18px;margin-top:20px}
+  .fase-player-info{display:flex;flex-direction:column;gap:2px;margin-bottom:4px}
+  .fase-player-titulo{font-size:14px;font-weight:bold;color:var(--terracota-light)}
+  .fase-player-desc{font-size:12px;color:#aaa;font-style:italic}
+  .fase-player audio{width:100%;height:36px;border-radius:8px;accent-color:var(--terracota)}
+
+  .quote-block{border-left:3px solid var(--terracota);padding:10px 16px;margin:20px 0;font-style:italic;color:#666;background:var(--cream);border-radius:0 8px 8px 0}
+  .section-intro{color:#555;margin-bottom:24px}
+
+  @media print{
+    .nav,.progress-bar-wrap,.save-fab,.print-fab,#cel-overlay,.breath-btn,.confetti-canvas,.trilha-open-btn,.trilha-player{display:none!important}
+    .header{background:var(--grafite)!important;-webkit-print-color-adjust:exact}
+    .section{padding:24px 16px}
+    body{font-size:13px}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">★ Bônus 3 — Exclusivo do Workbook ★</div>
+  <h1>Acalmando a Voz que Mente</h1>
+  <p>Uma meditação guiada para silenciar o ruído interno e restaurar sua paz<br>Ana Luiza Medeiros – Psicóloga Clínica · analuizapsicologa.com.br</p>
+</div>
+
+<nav class="nav">
+  <a href="#acolhimento" class="active">Acolhimento</a>
+  <a href="#fase1">1 · Preparação</a>
+  <a href="#fase2">2 · Respiração</a>
+  <a href="#fase3">3 · Ancoragem</a>
+  <a href="#fase4">4 · Visualização</a>
+  <a href="#fase5">5 · Retorno</a>
+  <a href="#plano">Meu Plano</a>
+</nav>
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+<!-- ACOLHIMENTO -->
+<section class="section" id="acolhimento">
+  <div class="acolhimento-card">
+    <h2>Um espaço seguro preparado com cuidado para você</h2>
+    <p>Esta meditação foi preparada para ajudar você a desacelerar a mente, reduzir a tensão emocional e reconectar-se com a sua respiração.</p>
+    <p>Ela combina técnicas terapêuticas validadas — respiração consciente, ancoragem sensorial e visualização — utilizadas por profissionais da psicologia para regulação emocional.</p>
+    <p>Você não precisa de experiência prévia. Apenas permita-se estar presente durante os próximos minutos. <strong>Esse já é o primeiro passo.</strong></p>
+  </div>
+  <div class="quote-block">Respirar com consciência é o primeiro passo para recuperar o controle emocional.</div>
+  <p style="font-weight:bold;color:var(--grafite);margin:24px 0 12px">Como Praticar Esta Meditação</p>
+  <div class="how-to">
+    <div class="how-step"><div class="how-num">1</div><p><strong>Escolha um ambiente tranquilo</strong> — Encontre um lugar silencioso onde você não será interrompida.</p></div>
+    <div class="how-step"><div class="how-num">2</div><p><strong>Acomode-se confortavelmente</strong> — Sente-se ou deite-se em uma posição natural.</p></div>
+    <div class="how-step"><div class="how-num">3</div><p><strong>Três respirações de chegada</strong> — Inspire pelo nariz e expire pela boca, sem pressa.</p></div>
+    <div class="how-step"><div class="how-num">4</div><p><strong>Leia ou grave o roteiro com calma</strong> — 25% mais devagar que o normal.</p></div>
+  </div>
+  <div class="fase-player">
+    <div class="fase-player-info">
+      <span class="fase-player-titulo">🎵 Nova Dimensão</span>
+      <span class="fase-player-desc">Toque antes de começar e deixe a música preparar sua mente</span>
+    </div>
+    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
+      <source src="Nova_dimensao_96k.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</section>
+
+<!-- FASE 1 -->
+<section class="section" id="fase1">
+  <div class="phase-header">
+    <div class="phase-num">1</div>
+    <div class="phase-title"><h2>Preparação Corporal</h2><span>Chegando ao momento presente · 2 a 3 minutos</span></div>
+  </div>
+  <div class="body-card">
+    <p><em>Olá. Se você está aqui agora, talvez sua mente esteja acelerada ou seu corpo esteja cansado sem motivo aparente.</em></p>
+    <p><em>Respire comigo. Hoje você não precisa resolver tudo. Você só precisa estar aqui.</em></p>
+    <div class="body-grid">
+      <div class="body-item"><strong>Ombros</strong><span>Solte a tensão. Deixe os ombros caírem naturalmente.</span></div>
+      <div class="body-item"><strong>Mandíbula</strong><span>Separe levemente os lábios. Solte o maxilar.</span></div>
+      <div class="body-item"><strong>Respiração</strong><span>Permita que o ar flua sem esforço algum.</span></div>
+    </div>
+  </div>
+  <div class="quote-block">A ansiedade não é fraqueza. Ela é uma resposta do seu corpo tentando proteger você. Hoje vamos ensinar seu corpo que ele pode descansar.</div>
+  <div class="fase-player">
+    <div class="fase-player-info">
+      <span class="fase-player-titulo">🎵 Nova Dimensão</span>
+      <span class="fase-player-desc">Ideal para preparação corporal</span>
+    </div>
+    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
+      <source src="Nova_dimensao_96k.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</section>
+
+<!-- FASE 2 -->
+<section class="section" id="fase2">
+  <div class="phase-header">
+    <div class="phase-num">2</div>
+    <div class="phase-title"><h2>Respiração Consciente</h2><span>Respiração Quadrada 4-4-4-4 · 4 minutos</span></div>
+  </div>
+  <p class="section-intro">Pressione <strong>Iniciar</strong> e siga o ritmo com calma.</p>
+  <div class="breath-wrap">
+    <div class="breath-circle-outer" id="breathCircle">
+      <div class="breath-circle-inner" id="breathLabel">Pronta?</div>
+    </div>
+    <div class="breath-steps">
+      <div class="breath-step" id="bs0"><strong>INSPIRE</strong>4 seg · pelo nariz</div>
+      <div class="breath-step" id="bs1"><strong>SEGURE</strong>4 seg · suavemente</div>
+      <div class="breath-step" id="bs2"><strong>EXPIRE</strong>4 seg · pela boca</div>
+      <div class="breath-step" id="bs3"><strong>SEGURE</strong>4 seg · suavemente</div>
+    </div>
+    <div class="breath-counter" id="breathCounter">—</div>
+    <div class="breath-msg" id="breathMsg">Inspire tranquilidade... expire tensão...</div>
+    <button class="breath-btn" id="breathBtn" onclick="toggleBreath()">▶ Iniciar</button>
+    <div class="breath-cycles" id="breathCycles"></div>
+  </div>
+  <div class="quote-block">Permita que sua barriga se mova naturalmente. Seu corpo sabe respirar. Você não precisa controlar tudo. Apenas acompanhar.</div>
+  <div class="fase-player">
+    <div class="fase-player-info">
+      <span class="fase-player-titulo">🎵 Relaxe</span>
+      <span class="fase-player-desc">Ideal para acompanhar a respiração quadrada</span>
+    </div>
+    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
+      <source src="Relaxe_96k.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</section>
+
+<!-- FASE 3 -->
+<section class="section" id="fase3">
+  <div class="phase-header">
+    <div class="phase-num">3</div>
+    <div class="phase-title"><h2>Ancoragem Sensorial</h2><span>Grounding 5-4-3-2-1 · 2 a 3 minutos</span></div>
+  </div>
+  <p class="section-intro">Esta técnica traz sua mente de volta ao momento presente, interrompendo o ciclo de pensamentos ansiosos.</p>
+  <div class="grounding-cards">
+    <div class="ground-card"><div class="ground-num">5</div><div class="ground-content"><h4>Observe 5 coisas que você consegue <em>ver</em> agora</h4><textarea id="g5" placeholder="Ex: a janela, a planta, a cadeira..." oninput="autoSave()"></textarea></div></div>
+    <div class="ground-card"><div class="ground-num">4</div><div class="ground-content"><h4>Perceba 4 <em>sons</em> ao seu redor</h4><textarea id="g4" placeholder="Ex: o vento, o silêncio, a respiração..." oninput="autoSave()"></textarea></div></div>
+    <div class="ground-card"><div class="ground-num">3</div><div class="ground-content"><h4>Sinta 3 <em>sensações físicas</em> no seu corpo</h4><textarea id="g3" placeholder="Ex: a cadeira no seu corpo, os pés no chão..." oninput="autoSave()"></textarea></div></div>
+    <div class="ground-card"><div class="ground-num">2</div><div class="ground-content"><h4>Identifique 2 <em>cheiros</em> ao seu redor</h4><textarea id="g2" placeholder="Ex: o ar fresco, uma vela, café..." oninput="autoSave()"></textarea></div></div>
+    <div class="ground-card"><div class="ground-num">1</div><div class="ground-content"><h4>Perceba 1 <em>sensação interna</em>: respiração, coração, silêncio</h4><textarea id="g1" placeholder="Ex: sinto meu coração mais calmo..." oninput="autoSave()"></textarea></div></div>
+  </div>
+  <div class="quote-block">Você está aqui. E neste momento... você está segura.</div>
+  <div class="fase-player">
+    <div class="fase-player-info">
+      <span class="fase-player-titulo">🎵 Céu Azul — Meditação</span>
+      <span class="fase-player-desc">Ideal para ancoragem sensorial</span>
+    </div>
+    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
+      <source src="Ceu_Azul_Meditacao_compressed.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</section>
+
+<!-- FASE 4 -->
+<section class="section" id="fase4">
+  <div class="phase-header">
+    <div class="phase-num">4</div>
+    <div class="phase-title"><h2>Visualização Terapêutica</h2><span>Seu espaço seguro interior · 5 minutos</span></div>
+  </div>
+  <div class="viz-card">
+    <p>Agora imagine um lugar onde você se sente segura: talvez uma praia tranquila, um jardim silencioso, uma varanda ao entardecer, ou qualquer espaço onde exista paz.</p>
+    <p>Se pensamentos surgirem, deixe-os passar como folhas descendo um rio. Você não precisa segurá-los. Apenas observe. E deixe ir.</p>
+    <p><em>Respire. Você está segura agora.</em></p>
+  </div>
+  <label class="field-label">Qual foi o lugar que você imaginou? Esse será seu espaço seguro sempre que precisar:</label>
+  <textarea class="field-input" id="espaco-seguro" placeholder="Descreva o lugar com detalhes — cores, sons, sensações..." oninput="autoSave()"></textarea>
+  <div class="fase-player">
+    <div class="fase-player-info">
+      <span class="fase-player-titulo">🎵 Leveza</span>
+      <span class="fase-player-desc">Ideal para a visualização terapêutica</span>
+    </div>
+    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
+      <source src="Leveza_compressed.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</section>
+
+<!-- FASE 5 -->
+<section class="section" id="fase5">
+  <div class="phase-header">
+    <div class="phase-num">5</div>
+    <div class="phase-title"><h2>Retorno com Leveza</h2><span>Voltando ao presente com cuidado · 2 minutos</span></div>
+  </div>
+  <div class="body-card">
+    <p>Respire profundamente. Perceba seu corpo e o ambiente ao seu redor. Movimente suavemente seus dedos, suas mãos, seus pés.</p>
+    <p><strong>Abra os olhos com gentileza. Leve essa sensação com você.</strong></p>
+  </div>
+  <label class="field-label" style="margin-top:28px">Afirmações Terapêuticas — marque as que ressoaram com você hoje:</label>
+  <div class="afirmacoes">
+    <label class="afirmacao-card" id="af0"><input type="checkbox" onchange="toggleAf(0);autoSave()"><span>Estou segura neste momento.</span></label>
+    <label class="afirmacao-card" id="af1"><input type="checkbox" onchange="toggleAf(1);autoSave()"><span>Posso sentir ansiedade e ainda assim permanecer bem.</span></label>
+    <label class="afirmacao-card" id="af2"><input type="checkbox" onchange="toggleAf(2);autoSave()"><span>Minha respiração é minha âncora.</span></label>
+    <label class="afirmacao-card" id="af3"><input type="checkbox" onchange="toggleAf(3);autoSave()"><span>Meu corpo está aprendendo a relaxar.</span></label>
+    <label class="afirmacao-card" id="af4"><input type="checkbox" onchange="toggleAf(4);autoSave()"><span>Isso vai passar. Porque tudo passa.</span></label>
+  </div>
+  <div class="fase-player">
+    <div class="fase-player-info">
+      <span class="fase-player-titulo">🎵 Paz Interior</span>
+      <span class="fase-player-desc">Ideal para o retorno com leveza</span>
+    </div>
+    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
+      <source src="Paz_Interior_compressed.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <label class="field-label" style="margin-top:28px">Como você está se sentindo agora?</label>
+  <textarea class="field-input" id="sentimento-agora" placeholder="Escreva livremente... não existe resposta certa." oninput="autoSave()"></textarea>
+
+  <!-- COMPROMISSO -->
+  <div class="compromisso-card">
+    <h3>Parabéns Por Ter Concluído!</h3>
+    <p>Ao completar esta tarefa, você demonstrou coragem e compromisso com o seu bem-estar emocional. Continue firme na sua jornada pelas 41 práticas do workbook.</p>
+    <button class="compromisso-btn" id="btn-compromisso" onclick="celebrar('compromisso')">✨ Confirmo meu compromisso</button>
+    <div id="compromisso-feito">✓ Compromisso assumido com coragem e amor próprio.</div>
+    <button id="btn-rever" onclick="celebrar('rever')">↺ Rever celebração</button>
+  </div>
+</section>
+
+
+
+<!-- PLANO -->
+<section class="section" id="plano">
+  <div class="phase-header">
+    <div class="phase-num" style="background:var(--salvia);font-size:16px">📅</div>
+    <div class="phase-title"><h2>Meu Plano de Prática</h2><span>A prática constante potencializa os resultados</span></div>
+  </div>
+  <p class="section-intro">Reserve um momento fixo na sua semana, mesmo que seja apenas 15 minutos. O hábito transforma.</p>
+  <div style="overflow-x:auto">
+    <table class="plano-table">
+      <thead><tr><th>Dia</th><th>Quando praticar</th><th>Onde praticar</th><th>Como me senti</th></tr></thead>
+      <tbody>
+        <tr><td>Segunda</td><td><input type="text" id="p0a" placeholder="Ex: manhã, 7h" oninput="autoSave()"></td><td><input type="text" id="p0b" placeholder="Ex: quarto" oninput="autoSave()"></td><td><input type="text" id="p0c" placeholder="Ex: mais leve" oninput="autoSave()"></td></tr>
+        <tr><td>Terça</td><td><input type="text" id="p1a" oninput="autoSave()"></td><td><input type="text" id="p1b" oninput="autoSave()"></td><td><input type="text" id="p1c" oninput="autoSave()"></td></tr>
+        <tr><td>Quarta</td><td><input type="text" id="p2a" oninput="autoSave()"></td><td><input type="text" id="p2b" oninput="autoSave()"></td><td><input type="text" id="p2c" oninput="autoSave()"></td></tr>
+        <tr><td>Quinta</td><td><input type="text" id="p3a" oninput="autoSave()"></td><td><input type="text" id="p3b" oninput="autoSave()"></td><td><input type="text" id="p3c" oninput="autoSave()"></td></tr>
+        <tr><td>Sexta</td><td><input type="text" id="p4a" oninput="autoSave()"></td><td><input type="text" id="p4b" oninput="autoSave()"></td><td><input type="text" id="p4c" oninput="autoSave()"></td></tr>
+        <tr><td>Sábado</td><td><input type="text" id="p5a" oninput="autoSave()"></td><td><input type="text" id="p5b" oninput="autoSave()"></td><td><input type="text" id="p5c" oninput="autoSave()"></td></tr>
+        <tr><td>Domingo</td><td><input type="text" id="p6a" oninput="autoSave()"></td><td><input type="text" id="p6b" oninput="autoSave()"></td><td><input type="text" id="p6c" oninput="autoSave()"></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="quote-block" style="margin-top:24px">Cada vez que você retorna a este roteiro, seu corpo aprende um pouco mais sobre como descansar e se reorganizar.</div>
+  <!-- MEDITAÇÃO GUIADA -->
+  <div class="meditacao-card">
+    <div class="meditacao-header">
+      <div class="meditacao-icon">🎧</div>
+      <div>
+        <strong>Meditação Guiada Exclusiva — Ana Luiza Medeiros</strong>
+        <span>Acalmando a Voz que Mente · ~6 min · Voz + Música</span>
+      </div>
+    </div>
+    <p class="meditacao-desc">Uma experiência sonora criada para ajudar você a desacelerar, acolher suas emoções e reconectar-se com a paz que a ansiedade tenta esconder.</p>
+    <p class="meditacao-instrucao">🎧 Use fones de ouvido, encontre um lugar tranquilo e permita-se viver estes próximos minutos como um encontro gentil consigo mesma.</p>
+    <audio controls style="width:100%;margin-top:14px;accent-color:#C4785A">
+      <source src="meditacao_guiada_ana_luiza_96k.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <div class="encerramento">
+    <h3>Você Deu um Passo Importante</h3>
+    <p>E isso já faz toda a diferença.</p>
+    <p>Cada vez que você para, respira e cuida de si, está escolhendo a saúde emocional. E isso é um ato de coragem.</p>
+    <p><em>Que você viva com mais leveza. Que a paz que existe em você seja encontrada.</em></p>
+    <a class="workbook-btn" href="https://analuizapsicologa.com.br" target="_blank">→ Acessar o Workbook Completo</a>
+    <p class="enc-disclaimer">Esta prática auxilia a regulação emocional, mas não substitui acompanhamento psicológico.</p>
+  </div>
+</section>
+
+<button class="save-fab" id="saveFab" onclick="manualSave()">💾 Salvar</button>
+<button class="print-fab" onclick="window.print()">🖨 Imprimir PDF</button>
+
+<!-- CELEBRATION OVERLAY -->
+<canvas class="confetti-canvas" id="confettiCanvas"></canvas>
+<div id="cel-overlay">
+  <div class="cel-box">
+    <div class="cel-emoji" id="cel-emoji">🌿</div>
+    <h2 id="cel-texto"></h2>
+    <p id="cel-sub">Sua jornada de cuidado começa com este momento de coragem.</p>
+    <button class="cel-btn-ok" onclick="fecharCel()">✓ Continuar</button>
+    <button class="cel-btn-replay" onclick="abrirCel(lastCelTipo)">↺ Rever celebração</button>
+  </div>
+</div>
+
+<script>
+// BREATHING
+// ==============================================
+const bPhases = [
+  { label:'INSPIRE\npelo nariz', msg:'"Inspiro tranquilidade..."', expand:true  },
+  { label:'SEGURE\nsuavemente',  msg:'Segure com leveza...',       expand:true  },
+  { label:'EXPIRE\npela boca',   msg:'"Expiro tensão..."',          expand:false },
+  { label:'SEGURE\nsuavemente',  msg:'Solte completamente...',      expand:false },
+];
+let bRunning=false, bInterval=null, bPhase=0, bSec=4, bCycle=0;
+const B_TOTAL = 6;
+
+function toggleBreath() { bRunning ? stopBreath() : startBreath(); }
+
+function startBreath() {
+  bRunning=true; bPhase=0; bSec=4; bCycle=0;
+  document.getElementById('breathBtn').textContent='⏹ Pausar';
+  runPhase();
+  document.getElementById('breathCounter').textContent='4';
+  bInterval = setInterval(bTick, 1000);
+}
+
+function stopBreath() {
+  bRunning=false; clearInterval(bInterval);
+  document.getElementById('breathBtn').textContent='▶ Iniciar';
+  document.getElementById('breathLabel').textContent='Pronta?';
+  document.getElementById('breathCounter').textContent='—';
+  document.getElementById('breathMsg').textContent='Inspire tranquilidade... expire tensão...';
+  document.getElementById('breathCircle').style.transform='';
+  for(let i=0;i<4;i++) document.getElementById('bs'+i).classList.remove('active');
+  document.getElementById('breathCycles').textContent='';
+}
+
+function runPhase() {
+  for(let i=0;i<4;i++) document.getElementById('bs'+i).classList.remove('active');
+  document.getElementById('bs'+bPhase).classList.add('active');
+  const p = bPhases[bPhase];
+  document.getElementById('breathLabel').textContent = p.label;
+  document.getElementById('breathMsg').textContent = p.msg;
+  document.getElementById('breathCircle').style.transform = p.expand ? 'scale(1.25)' : 'scale(1)';
+}
+
+function bTick() {
+  bSec--;
+  if (bSec <= 0) {
+    bPhase++;
+    if (bPhase === 4) {
+      bPhase = 0; bCycle++;
+      document.getElementById('breathCycles').textContent = `Ciclo ${bCycle} de ${B_TOTAL} concluído`;
+      if (bCycle >= B_TOTAL) {
+        stopBreath();
+        document.getElementById('breathMsg').textContent = '✓ Prática concluída. Você está mais calma agora.';
+        document.getElementById('breathCycles').textContent = `${B_TOTAL} ciclos completos ✓`;
+        celebrar('respiracao');
+        return;
+      }
+    }
+    bSec = 4;
+    runPhase();
+    document.getElementById('breathCounter').textContent = '4';
+  } else {
+    document.getElementById('breathCounter').textContent = String(bSec);
+  }
+}
+
+// ==============================================
+// CELEBRATION
+// ==============================================
+const FRASES = [
+  "Você acabou de dar o passo mais importante. O cuidado com você mesma começa agora.",
+  "Coragem não é a ausência do medo. É decidir que você vale mais do que ele.",
+  "Cada pequeno passo na direção certa muda o destino de toda uma jornada.",
+  "Você não precisa estar completamente bem para começar. Você só precisa começar."
+];
+let lastCelTipo = 'compromisso';
+
+function celebrar(tipo) {
+  lastCelTipo = tipo;
+  if (tipo === 'respiracao') {
+    document.getElementById('cel-emoji').textContent = '🌬️';
+    document.getElementById('cel-texto').textContent = 'Você completou sua prática de respiração!';
+    document.getElementById('cel-sub').textContent = 'Seu sistema nervoso agradece. Você está mais calma, mais presente, mais leve.';
+  } else {
+    document.getElementById('cel-emoji').textContent = '🌿';
+    document.getElementById('cel-texto').textContent = FRASES[Math.floor(Math.random()*FRASES.length)];
+    document.getElementById('cel-sub').textContent = 'Sua jornada de cuidado começa com este momento de coragem.';
+    document.getElementById('compromisso-feito').style.display = 'block';
+    document.getElementById('btn-rever').style.display = 'inline-block';
+  }
+  abrirCel(tipo);
+}
+
+function abrirCel(tipo) {
+  lastCelTipo = tipo;
+  document.getElementById('cel-overlay').classList.add('show');
+  lancarConfete();
+  tocarJingle();
+}
+
+function fecharCel() {
+  document.getElementById('cel-overlay').classList.remove('show');
+}
+
+// Confetti
+function lancarConfete() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = ['#C4785A','#7A9B76','#F5EFE6','#F0DDD5','#E8F0E6','#fff'];
+  const p = Array.from({length:150}, () => ({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height - canvas.height,
+    r: Math.random()*7+3,
+    c: colors[Math.floor(Math.random()*colors.length)],
+    t: Math.random()*10-5, ta: 0, ts: Math.random()*.1+.05
+  }));
+  let f=0;
+  (function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    p.forEach(q=>{ctx.beginPath();ctx.lineWidth=q.r;ctx.strokeStyle=q.c;ctx.moveTo(q.x+q.t+q.r/4,q.y);ctx.lineTo(q.x+q.t,q.y+q.t+q.r/4);ctx.stroke();});
+    p.forEach(q=>{q.ta+=q.ts;q.y+=(Math.cos(f/20)+1+q.r/2)*1.5;q.t=Math.sin(q.ta)*12;if(q.y>canvas.height){q.y=-10;q.x=Math.random()*canvas.width;}});
+    f++; if(f<260) requestAnimationFrame(draw); else ctx.clearRect(0,0,canvas.width,canvas.height);
+  })();
+}
+
+// Jingle
+function tocarJingle() {
+  try {
+    const c = new (window.AudioContext||window.webkitAudioContext)();
+    [523,659,784,1047,784,659,523].reduce((t,freq)=>{
+      const o=c.createOscillator(), g=c.createGain();
+      o.connect(g); g.connect(c.destination);
+      o.frequency.value=freq; o.type='sine';
+      g.gain.setValueAtTime(0.15,t);
+      g.gain.exponentialRampToValueAtTime(0.001,t+.3);
+      o.start(t); o.stop(t+.3); return t+.2;
+    }, c.currentTime);
+  } catch(e){}
+}
+
+// ==============================================
+// SAVE / RESTORE
+// ==============================================
+const SAVE_KEY = 'bonus3_v3';
+
+function gatherData() {
+  const d = {};
+  ['g5','g4','g3','g2','g1','espaco-seguro','sentimento-agora'].forEach(id => {
+    const el = document.getElementById(id); if(el) d[id]=el.value;
+  });
+  for(let i=0;i<5;i++) { const el=document.querySelector('#af'+i+' input'); if(el) d['af'+i]=el.checked; }
+  ['p0','p1','p2','p3','p4','p5','p6'].forEach(p=>{
+    ['a','b','c'].forEach(c=>{ const el=document.getElementById(p+c); if(el) d[p+c]=el.value; });
+  });
+  return d;
+}
+
+function restoreData(d) {
+  ['g5','g4','g3','g2','g1','espaco-seguro','sentimento-agora'].forEach(id=>{
+    const el=document.getElementById(id); if(el&&d[id]!==undefined) el.value=d[id];
+  });
+  for(let i=0;i<5;i++) {
+    const el=document.querySelector('#af'+i+' input');
+    if(el&&d['af'+i]) { el.checked=true; document.getElementById('af'+i).classList.add('checked'); }
+  }
+  ['p0','p1','p2','p3','p4','p5','p6'].forEach(p=>{
+    ['a','b','c'].forEach(c=>{ const el=document.getElementById(p+c); if(el&&d[p+c]!==undefined) el.value=d[p+c]; });
+  });
+}
+
+function toggleAf(i) {
+  const cb = document.querySelector('#af'+i+' input');
+  document.getElementById('af'+i).classList.toggle('checked', cb.checked);
+}
+
+let saveTO=null;
+function autoSave() {
+  clearTimeout(saveTO);
+  saveTO = setTimeout(()=>{
+    localStorage.setItem(SAVE_KEY, JSON.stringify(gatherData()));
+    const n=new Date();
+    document.getElementById('saveFab').textContent=`✓ Salvo às ${n.getHours().toString().padStart(2,'0')}:${n.getMinutes().toString().padStart(2,'0')}`;
+    setTimeout(()=>document.getElementById('saveFab').textContent='💾 Salvar', 3000);
+  }, 800);
+}
+function manualSave() {
+  localStorage.setItem(SAVE_KEY, JSON.stringify(gatherData()));
+  const n=new Date();
+  document.getElementById('saveFab').textContent=`✓ Salvo às ${n.getHours().toString().padStart(2,'0')}:${n.getMinutes().toString().padStart(2,'0')}`;
+  setTimeout(()=>document.getElementById('saveFab').textContent='💾 Salvar', 3000);
+}
+
+window.addEventListener('load',()=>{
+  try { const s=localStorage.getItem(SAVE_KEY); if(s) restoreData(JSON.parse(s)); } catch(e){}
+});
+
+// Nav + progress
+const secs2 = document.querySelectorAll('.section');
+const navAs = document.querySelectorAll('.nav a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs2.forEach(s=>{ if(window.scrollY>=s.offsetTop-120) cur=s.id; });
+  navAs.forEach(a=>{ a.classList.remove('active'); if(a.getAttribute('href')==='#'+cur) a.classList.add('active'); });
+  const dh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progressBar').style.width=(dh>0?window.scrollY/dh*100:0)+'%';
+});
+</script>
+</body>
+</html>
