@@ -3,695 +3,1603 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bônus 3 — Acalmando a Voz que Mente | Ana Luiza Medeiros</title>
+<title>Bônus 1 — Meu Mapa de Gatilhos</title>
 <style>
   :root {
-    --bg:#FBF8F3; --terracota:#C4785A; --terracota-light:#F0DDD5;
-    --salvia:#7A9B76; --salvia-light:#E8F0E6; --grafite:#2C2C2A;
-    --cream:#F5EFE6; --linha:#D9BFB5; --white:#ffffff;
+    --terracota: #C4785A;
+    --terracota-light: #F0DDD5;
+    --salvia: #7A9B76;
+    --salvia-light: #E8F0E6;
+    --grafite: #2C2C2A;
+    --fundo: #FBF8F3;
+    --cream: #F5EFE6;
+    --linha: #D9BFB5;
+    --text-muted: #888880;
+    --card-bg: #FFFFFF;
+    --radius: 16px;
+    --radius-sm: 8px;
   }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--grafite);font-family:Arial,'DM Sans',sans-serif;font-size:16px;line-height:1.7}
 
-  .header{background:var(--grafite);color:var(--white);padding:36px 24px 28px;text-align:center}
-  .header .badge{display:inline-block;background:var(--terracota);color:var(--white);font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px}
-  .header h1{font-family:Georgia,serif;font-size:clamp(22px,5vw,34px);font-weight:normal;font-style:italic;color:var(--terracota-light);line-height:1.3;margin-bottom:8px}
-  .header p{color:#aaa;font-size:13px}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .nav{position:sticky;top:0;z-index:100;background:var(--grafite);border-top:1px solid #3a3a38;display:flex;overflow-x:auto;scrollbar-width:none}
-  .nav::-webkit-scrollbar{display:none}
-  .nav a{flex-shrink:0;color:#aaa;text-decoration:none;padding:12px 16px;font-size:13px;white-space:nowrap;transition:color .2s,border-bottom .2s;border-bottom:2px solid transparent}
-  .nav a:hover,.nav a.active{color:var(--terracota-light);border-bottom:2px solid var(--terracota)}
+  html { font-size: 16px; scroll-behavior: smooth; }
 
-  .progress-bar-wrap{background:#e0dbd4;height:5px;position:sticky;top:43px;z-index:99}
-  .progress-bar-fill{height:5px;background:linear-gradient(90deg,var(--terracota),var(--salvia));width:0%;transition:width .5s ease}
+  body {
+    background: var(--fundo);
+    color: var(--grafite);
+    font-family: 'Georgia', serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
 
-  .section{padding:48px 20px;max-width:720px;margin:0 auto}
-  .section+.section{border-top:1px solid var(--linha)}
+  /* PROGRESS BAR */
+  .progress-bar-wrap {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--terracota-light);
+    z-index: 100;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--terracota), var(--salvia));
+    width: 0%;
+    transition: width 0.3s ease;
+  }
 
-  .acolhimento-card{background:var(--cream);border-left:4px solid var(--terracota);border-radius:12px;padding:28px 24px;margin-bottom:28px}
-  .acolhimento-card h2{font-family:Georgia,serif;font-size:20px;color:var(--terracota);margin-bottom:12px}
-  .acolhimento-card p{color:#555;margin-bottom:10px}
+  /* HEADER */
+  .site-header {
+    background: var(--grafite);
+    color: white;
+    padding: 20px 24px;
+    text-align: center;
+  }
+  .site-header .eyebrow {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--terracota-light);
+    margin-bottom: 6px;
+  }
+  .site-header h1 {
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: normal;
+    font-style: italic;
+    color: white;
+    line-height: 1.3;
+  }
+  .site-header .subtitle {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 6px;
+  }
 
-  .how-to{display:grid;gap:14px;margin-top:24px}
-  .how-step{display:flex;gap:16px;align-items:flex-start;background:var(--white);border-radius:10px;padding:16px 18px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-  .how-num{background:var(--terracota);color:var(--white);font-weight:bold;font-size:14px;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .how-step p{font-size:14px;color:#555}
+  /* PHASE NAV */
+  .phase-nav {
+    background: var(--cream);
+    border-bottom: 1px solid var(--linha);
+    padding: 0 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 4px;
+    z-index: 90;
+  }
+  .phase-nav::-webkit-scrollbar { display: none; }
+  .phase-nav-inner {
+    display: flex;
+    gap: 0;
+    min-width: max-content;
+    margin: 0 auto;
+    max-width: 700px;
+  }
+  .phase-btn {
+    background: none;
+    border: none;
+    padding: 14px 16px;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+  .phase-btn.active {
+    color: var(--terracota);
+    border-bottom-color: var(--terracota);
+    font-weight: bold;
+  }
+  .phase-btn:hover { color: var(--grafite); }
 
-  .trilha-tip{background:var(--salvia-light);border-radius:10px;padding:14px 18px;margin-top:20px;font-size:14px;color:#4a6b47}
-  .trilha-tip strong{display:block;margin-bottom:4px}
-  .btn-ouvir-tip{display:inline-block;margin-top:10px;background:var(--salvia);color:var(--white);border:none;border-radius:20px;padding:7px 18px;font-size:13px;font-weight:bold;cursor:pointer;font-family:Arial;text-decoration:none}
+  /* MAIN */
+  main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
 
-  .phase-header{display:flex;align-items:center;gap:14px;margin-bottom:24px}
-  .phase-num{background:var(--terracota);color:var(--white);font-family:Georgia,serif;font-size:22px;font-style:italic;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .phase-title h2{font-family:Georgia,serif;font-size:20px;color:var(--grafite)}
-  .phase-title span{font-size:13px;color:var(--terracota)}
+  /* INTRO CARD */
+  .intro-card {
+    background: var(--salvia-light);
+    border-left: 4px solid var(--salvia);
+    border-radius: var(--radius-sm);
+    padding: 24px;
+    margin-bottom: 40px;
+  }
+  .intro-card p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--grafite);
+  }
+  .intro-card p + p { margin-top: 12px; }
 
-  .body-card{background:var(--terracota-light);border-radius:12px;padding:22px 20px;margin-bottom:20px}
-  .body-card p{color:#5a3a2a;margin-bottom:8px}
-  .body-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:16px}
-  .body-item{background:var(--white);border-radius:10px;padding:14px;text-align:center}
-  .body-item strong{display:block;color:var(--terracota);font-size:14px;margin-bottom:4px}
-  .body-item span{font-size:13px;color:#666}
+  .how-to {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .how-to-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .how-to-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--salvia);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .how-to-text {
+    font-size: 14px;
+    line-height: 1.6;
+  }
 
-  /* BREATHING */
-  .breath-wrap{display:flex;flex-direction:column;align-items:center;padding:32px 20px;background:var(--grafite);border-radius:16px;margin:24px 0}
-  .breath-circle-outer{width:140px;height:140px;border-radius:50%;background:rgba(196,120,90,.15);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:transform 4s ease-in-out}
-  .breath-circle-inner{width:90px;height:90px;border-radius:50%;background:var(--terracota);display:flex;align-items:center;justify-content:center;color:var(--white);font-size:13px;font-weight:bold;text-align:center;line-height:1.3;white-space:pre-line}
-  .breath-steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
-  .breath-step{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);color:#aaa;border-radius:8px;padding:10px 14px;font-size:13px;text-align:center;transition:all .3s;min-width:90px}
-  .breath-step.active{background:var(--terracota);border-color:var(--terracota);color:var(--white)}
-  .breath-step strong{display:block;font-size:16px}
-  .breath-counter{font-size:52px;font-weight:bold;color:var(--terracota-light);text-align:center;margin-bottom:8px;min-height:64px}
-  .breath-msg{color:#ccc;font-style:italic;font-size:14px;text-align:center;min-height:20px;margin-bottom:16px}
-  .breath-btn{background:var(--terracota);color:var(--white);border:none;border-radius:24px;padding:12px 32px;font-size:15px;cursor:pointer;font-weight:bold;transition:background .2s;font-family:Arial}
-  .breath-btn:hover{background:#b06a4e}
-  .breath-cycles{color:#aaa;font-size:13px;margin-top:10px;min-height:20px}
+  /* PHASE SECTION */
+  .phase-section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .phase-section.active { display: block; }
 
-  /* GROUNDING */
-  .grounding-cards{display:grid;gap:14px;margin:20px 0}
-  .ground-card{background:var(--white);border-radius:12px;padding:18px 20px;display:flex;align-items:flex-start;gap:16px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-  .ground-num{font-family:Georgia,serif;font-size:32px;font-weight:bold;color:var(--terracota);min-width:40px;line-height:1}
-  .ground-content{flex:1}
-  .ground-content h4{font-size:15px;color:var(--grafite);margin-bottom:6px}
-  .ground-content textarea{width:100%;min-height:60px;border:1px solid var(--linha);border-radius:8px;padding:10px 12px;font-size:14px;font-family:Arial,sans-serif;background:var(--bg);color:var(--grafite);resize:vertical;outline:none;transition:border-color .2s}
-  .ground-content textarea:focus{border-color:var(--terracota)}
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-  .viz-card{background:var(--salvia-light);border-left:4px solid var(--salvia);border-radius:12px;padding:24px 20px;margin-bottom:20px}
-  .viz-card p{color:#3a5a38;margin-bottom:10px}
-  .field-label{font-size:14px;font-weight:bold;color:var(--grafite);margin-bottom:8px;margin-top:20px;display:block}
-  .field-input{width:100%;border:1px solid var(--linha);border-radius:8px;padding:10px 12px;font-size:14px;font-family:Arial,sans-serif;background:var(--white);color:var(--grafite);outline:none;transition:border-color .2s}
-  .field-input:focus{border-color:var(--salvia)}
-  textarea.field-input{min-height:80px;resize:vertical}
+  /* PHASE HEADER */
+  .phase-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .phase-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--terracota);
+    color: white;
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .phase-title-wrap h2 {
+    font-size: clamp(18px, 3.5vw, 22px);
+    font-weight: normal;
+    font-style: italic;
+    color: var(--grafite);
+    line-height: 1.3;
+  }
+  .phase-title-wrap .phase-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--terracota);
+    margin-bottom: 4px;
+  }
 
-  .afirmacoes{display:grid;gap:12px;margin:20px 0}
-  .afirmacao-card{background:var(--white);border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:pointer;transition:background .2s}
-  .afirmacao-card:hover{background:var(--cream)}
-  .afirmacao-card.checked{background:var(--salvia-light)}
-  .afirmacao-card input[type=checkbox]{width:18px;height:18px;accent-color:var(--salvia);flex-shrink:0;cursor:pointer}
-  .afirmacao-card span{font-style:italic;color:#444;font-size:15px}
+  .phase-intro {
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    padding: 18px 20px;
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: #555550;
+  }
 
-  .compromisso-card{background:var(--grafite);border-radius:16px;padding:32px 24px;text-align:center;margin-top:32px}
-  .compromisso-card h3{font-family:Georgia,serif;font-size:22px;color:var(--terracota-light);font-style:italic;font-weight:bold;margin-bottom:12px}
-  .compromisso-card p{color:#aaa;font-size:14px;margin-bottom:24px}
-  .compromisso-btn{background:var(--terracota);color:var(--white);border:none;border-radius:28px;padding:14px 40px;font-size:16px;font-weight:bold;cursor:pointer;transition:background .2s;font-family:Arial}
-  .compromisso-btn:hover{background:#b06a4e}
-  #compromisso-feito{display:none;color:#7fcf7a;font-size:15px;margin-top:16px;font-style:italic}
-  #btn-rever{display:none;background:transparent;color:var(--terracota-light);border:1px solid var(--terracota);border-radius:20px;padding:8px 20px;font-size:13px;cursor:pointer;margin-top:12px;font-family:Arial}
+  /* CARD */
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(44,44,42,0.06);
+  }
 
-  /* TRILHAS */
-  .trilhas{display:grid;gap:16px;margin-top:20px}
-  .trilha-card{background:var(--white);border-radius:14px;padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
-  .trilha-card-top{display:flex;align-items:center;gap:14px}
-  .trilha-icon{background:var(--terracota-light);border-radius:10px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-  .trilha-info{flex:1}
-  .trilha-info strong{display:block;font-size:14px;color:var(--grafite);margin-bottom:2px}
-  .trilha-info span{font-size:12px;color:#888}
-  .trilha-open-btn{background:var(--terracota);color:var(--white);border:none;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:bold;cursor:pointer;white-space:nowrap;transition:background .2s;font-family:Arial;flex-shrink:0}
-  .trilha-open-btn:hover{background:#b06a4e}
-  .trilha-open-btn.ativo{background:var(--salvia)}
+  .card-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--terracota);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--terracota-light);
+  }
 
-  .trilha-player{margin-top:14px;background:var(--grafite);border-radius:10px;padding:14px 16px;display:none}
-  .trilha-player.open{display:block}
-  .player-label{font-size:12px;color:#ccc;font-style:italic;margin-bottom:10px}
-  .player-controls{display:flex;align-items:center;gap:12px}
-  .player-playbtn{background:var(--terracota);color:var(--white);border:none;border-radius:50%;width:38px;height:38px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
-  .player-playbtn:hover{background:#b06a4e}
-  .player-track{flex:1}
-  .player-prog-wrap{background:rgba(255,255,255,.15);border-radius:4px;height:5px;margin-bottom:6px;position:relative;overflow:hidden}
-  .player-prog-fill{background:var(--terracota);height:5px;width:0%;border-radius:4px;transition:width 1s linear}
-  .player-time{font-size:11px;color:#aaa}
-  .player-vol-row{display:flex;align-items:center;gap:8px;margin-top:10px}
-  .player-vol-row span{font-size:11px;color:#888}
-  .player-vol-row input{flex:1;accent-color:var(--terracota)}
+  /* CHECKBOX GROUP */
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-  .trilha-intro{background:var(--cream);border-left:4px solid var(--salvia);border-radius:0 10px 10px 0;padding:18px 20px;margin-bottom:24px;color:#444}
-  .trilha-intro p{margin-bottom:8px;font-size:14px;line-height:1.7}
-  .trilha-intro p:last-child{margin-bottom:0;font-style:italic;color:#5a6b58}
-  .pix-cards{display:grid;gap:14px;margin-top:20px}
-  .pix-card{background:var(--salvia-light);border:1px solid #c8ddc6;border-radius:12px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
-  .pix-badge{flex-shrink:0;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:bold;text-align:center;line-height:1.3;min-width:64px}
-  .b-432  {background:#5a7a57;color:#fff}
-  .b-alpha{background:#7A9B76;color:#fff}
-  .b-theta{background:#7A9B76;color:#fff}
-  .b-528  {background:#7A9B76;color:#fff}
-  .pix-info{flex:1}
-  .pix-info strong{display:block;font-size:14px;color:var(--grafite);margin-bottom:2px}
-  .pix-info span{display:block;font-size:12px;color:#888;margin-bottom:4px}
-  .pix-info p{font-size:13px;color:#4a6b47;font-style:italic;margin-bottom:6px}
-  .pix-info a{font-size:13px;color:var(--terracota);font-weight:bold;text-decoration:none}
-  .pix-info a:hover{text-decoration:underline}
+  .checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid transparent;
+    transition: all 0.15s;
+  }
+  .checkbox-item:hover {
+    background: var(--fundo);
+    border-color: var(--linha);
+  }
+  .checkbox-item.checked {
+    background: var(--salvia-light);
+    border-color: var(--salvia);
+  }
 
-  /* remover estilos órfãos — não ocultar audio */
-  .trilha-open-btn{display:none}
+  .checkbox-item input[type="checkbox"] {
+    display: none;
+  }
 
-  .encerramento{background:var(--terracota-light);border-radius:16px;padding:36px 24px;text-align:center;margin-top:0}
+  .custom-checkbox {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--linha);
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: white;
+  }
 
-  .plano-table{width:100%;border-collapse:collapse;margin-top:20px}
-  .plano-table th{background:var(--grafite);color:var(--white);padding:12px 14px;font-size:13px;text-align:left}
-  .plano-table th:first-child{border-radius:8px 0 0 0}
-  .plano-table th:last-child{border-radius:0 8px 0 0}
-  .plano-table td{padding:4px 8px;background:var(--white);border-bottom:1px solid var(--linha)}
-  .plano-table tr:last-child td{border-bottom:none}
-  .plano-table td:first-child{font-weight:bold;color:var(--terracota);width:80px;font-size:14px;padding:10px 14px}
-  .plano-table input[type=text]{width:100%;border:none;background:transparent;font-size:14px;font-family:Arial,sans-serif;color:var(--grafite);padding:8px 4px;outline:none}
-  .plano-table input[type=text]::placeholder{color:#bbb}
+  .checkbox-item.checked .custom-checkbox {
+    background: var(--salvia);
+    border-color: var(--salvia);
+  }
 
-  .med-section-title{font-family:Georgia,serif;font-size:16px;color:var(--grafite);margin:28px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--linha)}
-  .med-cards{display:grid;gap:14px}
-  .med-card{background:var(--white);border-radius:12px;padding:16px 18px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-  .med-card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px}
-  .med-num{background:var(--salvia);color:var(--white);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;flex-shrink:0}
-  .med-card h4{font-size:14px;color:var(--grafite)}
-  .med-card p{font-size:13px;color:#666;margin-bottom:10px}
-  .med-card a{display:inline-block;background:var(--salvia-light);color:var(--salvia);border:1px solid var(--salvia);text-decoration:none;font-size:12px;font-weight:bold;padding:6px 14px;border-radius:20px;transition:all .2s}
-  .med-card a:hover{background:var(--salvia);color:var(--white)}
+  .custom-checkbox svg {
+    display: none;
+    width: 13px;
+    height: 13px;
+  }
+  .checkbox-item.checked .custom-checkbox svg { display: block; }
 
-  /* MEDITAÇÃO GUIADA */
-  .meditacao-card{background:linear-gradient(135deg,#2C2C2A 0%,#3d2a22 100%);border:2px solid var(--terracota);border-radius:16px;padding:26px 22px;margin-top:32px;margin-bottom:24px}
-  .meditacao-header{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-  .meditacao-icon{background:var(--terracota);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;box-shadow:0 0 16px rgba(196,120,90,.4)}
-  .meditacao-header strong{display:block;color:var(--terracota-light);font-size:15px;font-weight:bold;margin-bottom:3px;letter-spacing:.3px}
-  .meditacao-header span{font-size:12px;color:#aaa}
-  .meditacao-desc{font-size:14px;color:#ddd;line-height:1.7;margin-bottom:10px}
-  .meditacao-instrucao{font-size:13px;color:var(--terracota-light);font-style:italic;background:rgba(196,120,90,.12);border-left:3px solid var(--terracota);padding:10px 14px;border-radius:0 8px 8px 0;line-height:1.6}
+  .checkbox-label {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--grafite);
+    flex: 1;
+  }
 
-  /* PLAYERS NAS FASES — garantir visibilidade */
-  .fase-player{background:var(--grafite);border-radius:12px;padding:16px 18px;margin-top:20px;display:block!important}
-  .fase-player-info{display:flex;flex-direction:column;gap:2px;margin-bottom:4px}
-  .fase-player-titulo{font-size:14px;font-weight:bold;color:var(--terracota-light)}
-  .fase-player-desc{font-size:12px;color:#aaa;font-style:italic}
-  .fase-player audio{width:100%;height:36px;border-radius:8px}
-  .encerramento h3{font-family:Georgia,serif;font-size:22px;color:var(--grafite);font-style:italic;margin-bottom:14px}
-  .encerramento p{color:#5a3a2a;margin-bottom:18px;font-size:15px}
-  .enc-disclaimer{font-size:12px;color:#888;font-style:italic;margin-top:14px}
-  .workbook-btn{display:inline-block;background:var(--grafite);color:var(--white);text-decoration:none;padding:14px 36px;border-radius:28px;font-weight:bold;font-size:15px;margin-top:10px;transition:background .2s}
-  .workbook-btn:hover{background:#444}
+  /* TEXT INPUTS */
+  .field-group {
+    margin-top: 20px;
+  }
+  .field-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--grafite);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .field-sublabel {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: block;
+    font-style: italic;
+  }
 
-  .save-fab{position:fixed;bottom:24px;right:20px;background:var(--grafite);color:var(--white);border:none;border-radius:28px;padding:12px 20px;font-size:13px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:200;transition:background .2s;font-family:Arial}
-  .save-fab:hover{background:var(--terracota)}
-  .print-fab{position:fixed;bottom:24px;right:130px;background:var(--salvia);color:var(--white);border:none;border-radius:28px;padding:12px 20px;font-size:13px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:200;transition:background .2s;font-family:Arial}
-  .print-fab:hover{background:#5e7d5b}
+  textarea, input[type="text"] {
+    width: 100%;
+    border: 1.5px solid var(--linha);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    color: var(--grafite);
+    background: var(--fundo);
+    resize: vertical;
+    transition: border-color 0.2s;
+    line-height: 1.6;
+    min-height: 80px;
+  }
+  textarea:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--terracota);
+    background: white;
+  }
+  textarea::placeholder, input::placeholder {
+    color: #C0BDB8;
+    font-style: italic;
+  }
 
-  /* CELEBRATION */
-  #cel-overlay{visibility:hidden;opacity:0;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;transition:opacity .35s,visibility .35s}
-  #cel-overlay.show{visibility:visible;opacity:1}
-  .cel-box{background:var(--white);border-radius:20px;padding:40px 32px;max-width:420px;width:100%;text-align:center}
-  .cel-emoji{font-size:56px;margin-bottom:16px;line-height:1}
-  .cel-box h2{font-family:Georgia,serif;font-size:19px;color:var(--grafite);font-style:italic;margin-bottom:10px;line-height:1.5}
-  .cel-box p{color:#666;font-size:14px;margin-bottom:24px}
-  .cel-btn-ok{background:var(--terracota);color:var(--white);border:none;border-radius:24px;padding:13px 0;font-size:15px;font-weight:bold;cursor:pointer;font-family:Arial;width:100%;margin-bottom:10px}
-  .cel-btn-replay{background:transparent;color:var(--terracota);border:2px solid var(--terracota);border-radius:24px;padding:10px 0;font-size:14px;cursor:pointer;font-family:Arial;width:100%}
+  input[type="text"] { min-height: unset; }
 
-  .confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:999}
+  /* HIGHLIGHT FIELD */
+  .highlight-field {
+    background: var(--terracota-light);
+    border-radius: var(--radius-sm);
+    padding: 18px 20px;
+    margin-top: 20px;
+  }
+  .highlight-field .field-label {
+    color: var(--terracota);
+  }
+  .highlight-field textarea,
+  .highlight-field input {
+    background: white;
+    border-color: var(--terracota-light);
+  }
 
-  /* PLAYER NAS FASES */
-  .fase-player{background:var(--grafite);border-radius:12px;padding:16px 18px;margin-top:20px}
-  .fase-player-info{display:flex;flex-direction:column;gap:2px;margin-bottom:4px}
-  .fase-player-titulo{font-size:14px;font-weight:bold;color:var(--terracota-light)}
-  .fase-player-desc{font-size:12px;color:#aaa;font-style:italic}
-  .fase-player audio{width:100%;height:36px;border-radius:8px;accent-color:var(--terracota)}
+  /* PROTOCOL STEPS */
+  .protocol-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .step-badge {
+    background: var(--terracota);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .step-content { flex: 1; }
+  .step-content .field-label { font-size: 13px; }
 
-  .quote-block{border-left:3px solid var(--terracota);padding:10px 16px;margin:20px 0;font-style:italic;color:#666;background:var(--cream);border-radius:0 8px 8px 0}
-  .section-intro{color:#555;margin-bottom:24px}
+  /* COMMITMENT */
+  .commitment-card {
+    background: var(--grafite);
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    margin-top: 24px;
+    text-align: center;
+  }
+  .commitment-card h3 {
+    color: white;
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  .commitment-card p {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .commitment-card textarea,
+  .commitment-card input {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+    color: white;
+  }
+  .commitment-card textarea:focus,
+  .commitment-card input:focus {
+    background: rgba(255,255,255,0.12);
+    border-color: var(--terracota);
+  }
+  .commitment-card textarea::placeholder,
+  .commitment-card input::placeholder {
+    color: rgba(255,255,255,0.3);
+  }
+  .commitment-card .field-label { color: rgba(255,255,255,0.8); }
 
-  @media print{
-    .nav,.progress-bar-wrap,.save-fab,.print-fab,#cel-overlay,.breath-btn,.confetti-canvas,.trilha-open-btn,.trilha-player{display:none!important}
-    .header{background:var(--grafite)!important;-webkit-print-color-adjust:exact}
-    .section{padding:24px 16px}
-    body{font-size:13px}
+  .signature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  @media (max-width: 480px) {
+    .signature-row { grid-template-columns: 1fr; }
+  }
+
+  /* MAP SUMMARY */
+  .map-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 500px) {
+    .map-grid { grid-template-columns: 1fr; }
+  }
+  .map-item { }
+  .map-item .field-label {
+    color: var(--terracota);
+    font-size: 12px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--linha);
+    margin: 28px 0;
+  }
+
+  /* QUOTE BLOCK */
+  .quote-block {
+    border-left: 3px solid var(--terracota);
+    padding: 12px 20px;
+    margin: 24px 0;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--terracota);
+    background: var(--terracota-light);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  /* NAVIGATION BUTTONS */
+  .nav-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--linha);
+  }
+
+  .btn {
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .btn-primary {
+    background: var(--terracota);
+    color: white;
+  }
+  .btn-primary:hover { background: #B5674A; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1.5px solid var(--linha);
+  }
+  .btn-secondary:hover { border-color: var(--grafite); color: var(--grafite); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* CLOSING PAGE */
+  .closing-page {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .closing-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--salvia-light);
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .closing-page h2 {
+    font-size: clamp(22px, 4vw, 28px);
+    font-style: italic;
+    color: var(--grafite);
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .closing-page p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #666660;
+    max-width: 480px;
+    margin: 0 auto 20px;
+  }
+  .closing-cta {
+    display: inline-block;
+    margin-top: 16px;
+    background: var(--terracota);
+    color: white;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .closing-cta:hover { background: #B5674A; transform: translateY(-2px); }
+
+  /* SAVE BUTTON */
+  .save-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    background: var(--salvia);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(122,155,118,0.4);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 80;
+  }
+  .save-btn:hover { background: #6A8B66; transform: translateY(-2px); }
+  .save-toast {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: var(--grafite);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 80;
+    pointer-events: none;
+  }
+  .save-toast.show { opacity: 1; }
+
+  /* PRINT */
+  @media print {
+    .progress-bar-wrap, .phase-nav, .nav-buttons, .save-btn,
+    .save-toast, #unsaved-modal, #celebrationOverlay, #replayBtn,
+    .closing-cta, button { display: none !important; }
+    .phase-section { display: block !important; visibility: visible !important; opacity: 1 !important; height: auto !important; overflow: visible !important; }
+    main { display: block !important; }
+    section { display: block !important; }
+    body { background: white !important; color: #000 !important; }
+    .card { box-shadow: none !important; border: 1px solid #ccc !important; background: white !important; break-inside: avoid; }
+    .commitment-card { background: white !important; color: #000 !important; border: 2px solid #C4785A !important; }
+    .commitment-card * { color: #000 !important; }
+    #commitConfirmed p { color: #2C7A2C !important; }
+    textarea, input[type="text"] { background: white !important; border: 1px solid #999 !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .checkbox-item.checked { background: #E8F0E6 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .checkbox-item.checked .custom-checkbox { background: #7A9B76 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .phase-number { background: #C4785A !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .site-header { background: #2C2C2A !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card { page-break-inside: avoid; margin-bottom: 12pt; }
+    .phase-header { page-break-before: auto; margin-top: 24pt; }
+    #phase0 { page-break-before: avoid; }
+    @page { margin: 15mm; size: A4; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    main { padding: 24px 14px 80px; }
+    .card { padding: 18px 16px; }
+    .phase-header { gap: 12px; }
+    .phase-number { width: 40px; height: 40px; font-size: 17px; }
   }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="badge">★ Bônus 3 — Exclusiva da Jornada Guiada ★</div>
-  <h1>Acalmando a Voz que Mente</h1>
-  <p>Uma meditação guiada para silenciar o ruído interno e restaurar sua paz<br>Ana Luiza Medeiros – Psicóloga Clínica · analuizapsicologa.com.br</p>
+<div class="progress-bar-wrap">
+  <div class="progress-bar-fill" id="progressBar"></div>
 </div>
 
-<nav class="nav">
-  <a href="#acolhimento" class="active">Acolhimento</a>
-  <a href="#fase1">1 · Preparação</a>
-  <a href="#fase2">2 · Respiração</a>
-  <a href="#fase3">3 · Ancoragem</a>
-  <a href="#fase4">4 · Visualização</a>
-  <a href="#fase5">5 · Retorno</a>
-  <a href="#plano">Meu Plano</a>
+<header class="site-header">
+  <p class="eyebrow">★ Bônus 1 — Exclusiva da Jornada Guiada ★</p>
+  <h1>Meu Mapa de Gatilhos</h1>
+  <p class="subtitle">O Que Está Acionando a Sua Ansiedade · Ana Luiza Medeiros — Psicóloga Clínica</p>
+</header>
+
+<nav class="phase-nav" aria-label="Fases do material">
+  <div class="phase-nav-inner">
+    <button class="phase-btn active" onclick="goToPhase(0)" id="nav0">Introdução</button>
+    <button class="phase-btn" onclick="goToPhase(1)" id="nav1">1 · Consciência</button>
+    <button class="phase-btn" onclick="goToPhase(2)" id="nav2">2 · Identificação</button>
+    <button class="phase-btn" onclick="goToPhase(3)" id="nav3">3 · Compreensão</button>
+    <button class="phase-btn" onclick="goToPhase(4)" id="nav4">4 · Regulação</button>
+    <button class="phase-btn" onclick="goToPhase(5)" id="nav5">5 · Autonomia</button>
+    <button class="phase-btn" onclick="goToPhase(6)" id="nav6">Meu Mapa</button>
+  </div>
 </nav>
-<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
 
-<!-- ACOLHIMENTO -->
-<section class="section" id="acolhimento">
-  <div class="acolhimento-card">
-    <h2>Um espaço seguro preparado com cuidado para você</h2>
-    <p>Esta meditação foi preparada para ajudar você a desacelerar a mente, reduzir a tensão emocional e reconectar-se com a sua respiração.</p>
-    <p>Ela combina técnicas terapêuticas validadas — respiração consciente, ancoragem sensorial e visualização — utilizadas por profissionais da psicologia para regulação emocional.</p>
-    <p>Você não precisa de experiência prévia. Apenas permita-se estar presente durante os próximos minutos. <strong>Esse já é o primeiro passo.</strong></p>
-  </div>
-  <div class="quote-block">Respirar com consciência é o primeiro passo para recuperar o controle emocional.</div>
-  <p style="font-weight:bold;color:var(--grafite);margin:24px 0 12px">Como Praticar Esta Meditação</p>
-  <div class="how-to">
-    <div class="how-step"><div class="how-num">1</div><p><strong>Escolha um ambiente tranquilo</strong> — Encontre um lugar silencioso onde você não será interrompida.</p></div>
-    <div class="how-step"><div class="how-num">2</div><p><strong>Acomode-se confortavelmente</strong> — Sente-se ou deite-se em uma posição natural.</p></div>
-    <div class="how-step"><div class="how-num">3</div><p><strong>Três respirações de chegada</strong> — Inspire pelo nariz e expire pela boca, sem pressa.</p></div>
-    <div class="how-step"><div class="how-num">4</div><p><strong>Leia ou grave o roteiro com calma</strong> — 25% mais devagar que o normal.</p></div>
-  </div>
-  <div class="fase-player">
-    <div class="fase-player-info">
-      <span class="fase-player-titulo">🎵 Nova Dimensão</span>
-      <span class="fase-player-desc">Toque antes de começar e deixe a música preparar sua mente</span>
+<main>
+
+  <!-- INTRODUÇÃO -->
+  <section class="phase-section active" id="phase0">
+    <div class="intro-card">
+      <p>Se você está aqui, é porque algo dentro de você quer mudar. <strong>Isso já é corajoso.</strong></p>
+      <p>Este material não é um questionário. Não existe resposta certa ou errada. Ele é um espaço seguro para você se observar com gentileza, sem julgamento, sem pressão e no seu próprio ritmo.</p>
+      <p>Você não está sozinha nessa experiência. A ansiedade afeta milhões de mulheres, e reconhecê-la é o primeiro passo para viver com mais leveza.</p>
     </div>
-    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
-      <source src="Nova_dimensao_96k.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-</section>
 
-<!-- FASE 1 -->
-<section class="section" id="fase1">
-  <div class="phase-header">
-    <div class="phase-num">1</div>
-    <div class="phase-title"><h2>Preparação Corporal</h2><span>Chegando ao momento presente · 2 a 3 minutos</span></div>
-  </div>
-  <div class="body-card">
-    <p><em>Olá. Se você está aqui agora, talvez sua mente esteja acelerada ou seu corpo esteja cansado sem motivo aparente.</em></p>
-    <p><em>Respire comigo. Hoje você não precisa resolver tudo. Você só precisa estar aqui.</em></p>
-    <div class="body-grid">
-      <div class="body-item"><strong>Ombros</strong><span>Solte a tensão. Deixe os ombros caírem naturalmente.</span></div>
-      <div class="body-item"><strong>Mandíbula</strong><span>Separe levemente os lábios. Solte o maxilar.</span></div>
-      <div class="body-item"><strong>Respiração</strong><span>Permita que o ar flua sem esforço algum.</span></div>
-    </div>
-  </div>
-  <div class="quote-block">A ansiedade não é fraqueza. Ela é uma resposta do seu corpo tentando proteger você. Hoje vamos ensinar seu corpo que ele pode descansar.</div>
-  <div class="fase-player">
-    <div class="fase-player-info">
-      <span class="fase-player-titulo">🎵 Nova Dimensão</span>
-      <span class="fase-player-desc">Ideal para preparação corporal</span>
-    </div>
-    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
-      <source src="Nova_dimensao_96k.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-</section>
-
-<!-- FASE 2 -->
-<section class="section" id="fase2">
-  <div class="phase-header">
-    <div class="phase-num">2</div>
-    <div class="phase-title"><h2>Respiração Consciente</h2><span>Respiração Quadrada 4-4-4-4 · 4 minutos</span></div>
-  </div>
-  <p class="section-intro">Pressione <strong>Iniciar</strong> e siga o ritmo com calma.</p>
-  <div class="breath-wrap">
-    <div class="breath-circle-outer" id="breathCircle">
-      <div class="breath-circle-inner" id="breathLabel">Pronta?</div>
-    </div>
-    <div class="breath-steps">
-      <div class="breath-step" id="bs0"><strong>INSPIRE</strong>4 seg · pelo nariz</div>
-      <div class="breath-step" id="bs1"><strong>SEGURE</strong>4 seg · suavemente</div>
-      <div class="breath-step" id="bs2"><strong>EXPIRE</strong>4 seg · pela boca</div>
-      <div class="breath-step" id="bs3"><strong>SEGURE</strong>4 seg · suavemente</div>
-    </div>
-    <div class="breath-counter" id="breathCounter">—</div>
-    <div class="breath-msg" id="breathMsg">Inspire tranquilidade... expire tensão...</div>
-    <button class="breath-btn" id="breathBtn" onclick="toggleBreath()">▶ Iniciar</button>
-    <div class="breath-cycles" id="breathCycles"></div>
-  </div>
-  <div class="quote-block">Permita que sua barriga se mova naturalmente. Seu corpo sabe respirar. Você não precisa controlar tudo. Apenas acompanhar.</div>
-  <div class="fase-player">
-    <div class="fase-player-info">
-      <span class="fase-player-titulo">🎵 Relaxe</span>
-      <span class="fase-player-desc">Ideal para acompanhar a respiração quadrada</span>
-    </div>
-    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
-      <source src="Relaxe_96k.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-</section>
-
-<!-- FASE 3 -->
-<section class="section" id="fase3">
-  <div class="phase-header">
-    <div class="phase-num">3</div>
-    <div class="phase-title"><h2>Ancoragem Sensorial</h2><span>Grounding 5-4-3-2-1 · 2 a 3 minutos</span></div>
-  </div>
-  <p class="section-intro">Esta técnica traz sua mente de volta ao momento presente, interrompendo o ciclo de pensamentos ansiosos.</p>
-  <div class="grounding-cards">
-    <div class="ground-card"><div class="ground-num">5</div><div class="ground-content"><h4>Observe 5 coisas que você consegue <em>ver</em> agora</h4><textarea id="g5" placeholder="Ex: a janela, a planta, a cadeira..." oninput="autoSave()"></textarea></div></div>
-    <div class="ground-card"><div class="ground-num">4</div><div class="ground-content"><h4>Perceba 4 <em>sons</em> ao seu redor</h4><textarea id="g4" placeholder="Ex: o vento, o silêncio, a respiração..." oninput="autoSave()"></textarea></div></div>
-    <div class="ground-card"><div class="ground-num">3</div><div class="ground-content"><h4>Sinta 3 <em>sensações físicas</em> no seu corpo</h4><textarea id="g3" placeholder="Ex: a cadeira no seu corpo, os pés no chão..." oninput="autoSave()"></textarea></div></div>
-    <div class="ground-card"><div class="ground-num">2</div><div class="ground-content"><h4>Identifique 2 <em>cheiros</em> ao seu redor</h4><textarea id="g2" placeholder="Ex: o ar fresco, uma vela, café..." oninput="autoSave()"></textarea></div></div>
-    <div class="ground-card"><div class="ground-num">1</div><div class="ground-content"><h4>Perceba 1 <em>sensação interna</em>: respiração, coração, silêncio</h4><textarea id="g1" placeholder="Ex: sinto meu coração mais calmo..." oninput="autoSave()"></textarea></div></div>
-  </div>
-  <div class="quote-block">Você está aqui. E neste momento... você está segura.</div>
-  <div class="fase-player">
-    <div class="fase-player-info">
-      <span class="fase-player-titulo">🎵 Céu Azul — Meditação</span>
-      <span class="fase-player-desc">Ideal para ancoragem sensorial</span>
-    </div>
-    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
-      <source src="Ceu_Azul_Meditacao_compressed.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-</section>
-
-<!-- FASE 4 -->
-<section class="section" id="fase4">
-  <div class="phase-header">
-    <div class="phase-num">4</div>
-    <div class="phase-title"><h2>Visualização Terapêutica</h2><span>Seu espaço seguro interior · 5 minutos</span></div>
-  </div>
-  <div class="viz-card">
-    <p>Agora imagine um lugar onde você se sente segura: talvez uma praia tranquila, um jardim silencioso, uma varanda ao entardecer, ou qualquer espaço onde exista paz.</p>
-    <p>Se pensamentos surgirem, deixe-os passar como folhas descendo um rio. Você não precisa segurá-los. Apenas observe. E deixe ir.</p>
-    <p><em>Respire. Você está segura agora.</em></p>
-  </div>
-  <label class="field-label">Qual foi o lugar que você imaginou? Esse será seu espaço seguro sempre que precisar:</label>
-  <textarea class="field-input" id="espaco-seguro" placeholder="Descreva o lugar com detalhes — cores, sons, sensações..." oninput="autoSave()"></textarea>
-  <div class="fase-player">
-    <div class="fase-player-info">
-      <span class="fase-player-titulo">🎵 Leveza</span>
-      <span class="fase-player-desc">Ideal para a visualização terapêutica</span>
-    </div>
-    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
-      <source src="Leveza_compressed.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-</section>
-
-<!-- FASE 5 -->
-<section class="section" id="fase5">
-  <div class="phase-header">
-    <div class="phase-num">5</div>
-    <div class="phase-title"><h2>Retorno com Leveza</h2><span>Voltando ao presente com cuidado · 2 minutos</span></div>
-  </div>
-  <div class="body-card">
-    <p>Respire profundamente. Perceba seu corpo e o ambiente ao seu redor. Movimente suavemente seus dedos, suas mãos, seus pés.</p>
-    <p><strong>Abra os olhos com gentileza. Leve essa sensação com você.</strong></p>
-  </div>
-  <label class="field-label" style="margin-top:28px">Afirmações Terapêuticas — marque as que ressoaram com você hoje:</label>
-  <div class="afirmacoes">
-    <label class="afirmacao-card" id="af0"><input type="checkbox" onchange="toggleAf(0);autoSave()"><span>Estou segura neste momento.</span></label>
-    <label class="afirmacao-card" id="af1"><input type="checkbox" onchange="toggleAf(1);autoSave()"><span>Posso sentir ansiedade e ainda assim permanecer bem.</span></label>
-    <label class="afirmacao-card" id="af2"><input type="checkbox" onchange="toggleAf(2);autoSave()"><span>Minha respiração é minha âncora.</span></label>
-    <label class="afirmacao-card" id="af3"><input type="checkbox" onchange="toggleAf(3);autoSave()"><span>Meu corpo está aprendendo a relaxar.</span></label>
-    <label class="afirmacao-card" id="af4"><input type="checkbox" onchange="toggleAf(4);autoSave()"><span>Isso vai passar. Porque tudo passa.</span></label>
-  </div>
-  <div class="fase-player">
-    <div class="fase-player-info">
-      <span class="fase-player-titulo">🎵 Paz Interior</span>
-      <span class="fase-player-desc">Ideal para o retorno com leveza</span>
-    </div>
-    <audio controls style="width:100%;margin-top:8px;accent-color:#C4785A">
-      <source src="Paz_Interior_compressed.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-
-  <label class="field-label" style="margin-top:28px">Como você está se sentindo agora?</label>
-  <textarea class="field-input" id="sentimento-agora" placeholder="Escreva livremente... não existe resposta certa." oninput="autoSave()"></textarea>
-
-  <!-- COMPROMISSO -->
-  <div class="compromisso-card">
-    <h3>Parabéns Por Ter Concluído!</h3>
-    <p>Ao completar esta tarefa, você demonstrou coragem e compromisso com o seu bem-estar emocional. Continue firme na sua jornada pelas 41 práticas.</p>
-    <button class="compromisso-btn" id="btn-compromisso" onclick="celebrar('compromisso')">✨ Confirmo meu compromisso</button>
-    <div id="compromisso-feito">✓ Compromisso assumido com coragem e amor próprio.</div>
-    <button id="btn-rever" onclick="celebrar('rever')">↺ Rever celebração</button>
-  </div>
-</section>
-
-
-
-<!-- PLANO -->
-<section class="section" id="plano">
-  <div class="phase-header">
-    <div class="phase-num" style="background:var(--salvia);font-size:16px">📅</div>
-    <div class="phase-title"><h2>Meu Plano de Prática</h2><span>A prática constante potencializa os resultados</span></div>
-  </div>
-  <p class="section-intro">Reserve um momento fixo na sua semana, mesmo que seja apenas 15 minutos. O hábito transforma.</p>
-  <div style="overflow-x:auto">
-    <table class="plano-table">
-      <thead><tr><th>Dia</th><th>Quando praticar</th><th>Onde praticar</th><th>Como me senti</th></tr></thead>
-      <tbody>
-        <tr><td>Segunda</td><td><input type="text" id="p0a" placeholder="Ex: manhã, 7h" oninput="autoSave()"></td><td><input type="text" id="p0b" placeholder="Ex: quarto" oninput="autoSave()"></td><td><input type="text" id="p0c" placeholder="Ex: mais leve" oninput="autoSave()"></td></tr>
-        <tr><td>Terça</td><td><input type="text" id="p1a" oninput="autoSave()"></td><td><input type="text" id="p1b" oninput="autoSave()"></td><td><input type="text" id="p1c" oninput="autoSave()"></td></tr>
-        <tr><td>Quarta</td><td><input type="text" id="p2a" oninput="autoSave()"></td><td><input type="text" id="p2b" oninput="autoSave()"></td><td><input type="text" id="p2c" oninput="autoSave()"></td></tr>
-        <tr><td>Quinta</td><td><input type="text" id="p3a" oninput="autoSave()"></td><td><input type="text" id="p3b" oninput="autoSave()"></td><td><input type="text" id="p3c" oninput="autoSave()"></td></tr>
-        <tr><td>Sexta</td><td><input type="text" id="p4a" oninput="autoSave()"></td><td><input type="text" id="p4b" oninput="autoSave()"></td><td><input type="text" id="p4c" oninput="autoSave()"></td></tr>
-        <tr><td>Sábado</td><td><input type="text" id="p5a" oninput="autoSave()"></td><td><input type="text" id="p5b" oninput="autoSave()"></td><td><input type="text" id="p5c" oninput="autoSave()"></td></tr>
-        <tr><td>Domingo</td><td><input type="text" id="p6a" oninput="autoSave()"></td><td><input type="text" id="p6b" oninput="autoSave()"></td><td><input type="text" id="p6c" oninput="autoSave()"></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="quote-block" style="margin-top:24px">Cada vez que você retorna a este roteiro, seu corpo aprende um pouco mais sobre como descansar e se reorganizar.</div>
-  <!-- MEDITAÇÃO GUIADA -->
-  <div class="meditacao-card">
-    <div class="meditacao-header">
-      <div class="meditacao-icon">🎧</div>
-      <div>
-        <strong>Meditação Guiada Exclusiva — Ana Luiza Medeiros</strong>
-        <span>Acalmando a Voz que Mente · ~6 min · Voz + Música</span>
+    <div class="card">
+      <div class="card-title">Como usar este material</div>
+      <div class="how-to">
+        <div class="how-to-item">
+          <div class="how-to-num">1</div>
+          <div class="how-to-text"><strong>Escolha um momento tranquilo.</strong> Sem pressa, sem distração. Um chá, uma cadeira confortável. Este guia merece presença.</div>
+        </div>
+        <div class="how-to-item">
+          <div class="how-to-num">2</div>
+          <div class="how-to-text"><strong>Leia cada seção com calma.</strong> Antes de marcar qualquer opção, respire e observe o que ressoa em você.</div>
+        </div>
+        <div class="how-to-item">
+          <div class="how-to-num">3</div>
+          <div class="how-to-text"><strong>Marque sem julgamento.</strong> Cada marca é um dado valioso sobre você — não é fraqueza, é autoconhecimento.</div>
+        </div>
+        <div class="how-to-item">
+          <div class="how-to-num">4</div>
+          <div class="how-to-text"><strong>Complete os campos de escrita.</strong> As linhas existem para você. Escreva o que vier, mesmo que seja só uma palavra.</div>
+        </div>
+        <div class="how-to-item">
+          <div class="how-to-num">5</div>
+          <div class="how-to-text"><strong>Leve para a jornada.</strong> Ao terminar, vá direto para a Prática 1. Este mapa é o seu ponto de partida.</div>
+        </div>
       </div>
     </div>
-    <p class="meditacao-desc">Uma experiência sonora criada para ajudar você a desacelerar, acolher suas emoções e reconectar-se com a paz que a ansiedade tenta esconder.</p>
-    <p class="meditacao-instrucao">🎧 Use fones de ouvido, encontre um lugar tranquilo e permita-se viver estes próximos minutos como um encontro gentil consigo mesma.</p>
-    <audio controls style="width:100%;margin-top:14px;accent-color:#C4785A">
-      <source src="meditacao_guiada_ana_luiza_96k.mp3" type="audio/mpeg">
-    </audio>
-  </div>
 
-  <div class="encerramento">
-    <h3>Você Deu um Passo Importante</h3>
-    <p>E isso já faz toda a diferença.</p>
-    <p>Cada vez que você para, respira e cuida de si, está escolhendo a saúde emocional. E isso é um ato de coragem.</p>
-    <p><em>Que você viva com mais leveza. Que a paz que existe em você seja encontrada.</em></p>
-    <a class="workbook-btn" href="https://analuizapsicologa.com.br" target="_blank">→ Acessar a Jornada Completa</a>
-    <p class="enc-disclaimer">Esta prática auxilia a regulação emocional, mas não substitui acompanhamento psicológico.</p>
-  </div>
-</section>
+    <div class="nav-buttons">
+      <span></span>
+      <button class="btn btn-primary" onclick="goToPhase(1)">Começar → Fase 1</button>
+    </div>
+  </section>
 
-<button class="save-fab" id="saveFab" onclick="manualSave()">💾 Salvar</button>
-<button class="print-fab" onclick="window.print()">🖨 Imprimir PDF</button>
+  <!-- FASE 1 — CONSCIÊNCIA -->
+  <section class="phase-section" id="phase1">
+    <div class="phase-header">
+      <div class="phase-number">1</div>
+      <div class="phase-title-wrap">
+        <div class="phase-label">Fase 1</div>
+        <h2>Consciência — O Que Me Afeta?</h2>
+      </div>
+    </div>
 
-<!-- CELEBRATION OVERLAY -->
-<canvas class="confetti-canvas" id="confettiCanvas"></canvas>
-<div id="cel-overlay">
-  <div class="cel-box">
-    <div class="cel-emoji" id="cel-emoji">🌿</div>
-    <h2 id="cel-texto"></h2>
-    <p id="cel-sub">Sua jornada de cuidado começa com este momento de coragem.</p>
-    <button class="cel-btn-ok" onclick="fecharCel()">✓ Continuar</button>
-    <button class="cel-btn-replay" onclick="abrirCel(lastCelTipo)">↺ Rever celebração</button>
+    <div class="phase-intro">
+      Gatilhos são situações, pessoas, ambientes ou pensamentos que disparam a resposta ansiosa no seu corpo. Identificá-los é o primeiro passo para deixar de ser surpreendida por eles.<br><br>
+      <em>Marque tudo que reconhecer — não apenas o que acontece sempre, mas também o que acontece às vezes.</em>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Gatilhos do Ambiente e do Cotidiano</div>
+      <div class="checkbox-group">
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Lugares muito cheios, barulhentos ou agitados</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Trânsito intenso ou deslocamentos longos e estressantes</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Ambientes com cobrança constante: trabalho, escola, família</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Excesso de notícias, redes sociais ou informações ao mesmo tempo</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Mudanças inesperadas de rotina, planos ou expectativas</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Compromissos acumulados sem tempo de descanso entre eles</span>
+        </label>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Outro gatilho que percebo:</label>
+        <input type="text" placeholder="Escreva aqui...">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Gatilhos nas Relações e nas Emoções</div>
+      <div class="checkbox-group">
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Discussões, conflitos ou tensão familiar</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Sentir que decepciono ou não atendo as expectativas de outros</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Dificuldade de dizer não ou de estabelecer limites</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Ficar muito tempo sozinha com os próprios pensamentos</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Comparações com outras pessoas nas redes sociais</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Sensação de que não sou suficiente</span>
+        </label>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Outro gatilho emocional que percebo:</label>
+        <input type="text" placeholder="Escreva aqui...">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Gatilhos do Corpo e do Estilo de Vida</div>
+      <div class="checkbox-group">
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Dormir mal, pouco ou de forma irregular</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Pular refeições ou alimentação desequilibrada</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Cansaço físico acumulado sem recuperação</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Excesso de café, energéticos ou estimulantes</span>
+        </label>
+        <label class="checkbox-item" onclick="toggleCheck(this)">
+          <input type="checkbox">
+          <div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="checkbox-label">Sedentarismo, falta de movimento no corpo</span>
+        </label>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Outro gatilho físico que percebo:</label>
+        <input type="text" placeholder="Escreva aqui...">
+      </div>
+    </div>
+
+    <div class="card" style="background: var(--terracota-light); border: none;">
+      <div class="field-group" style="margin-top:0">
+        <label class="field-label" style="color: var(--terracota); font-size: 15px;">✦ Meu principal gatilho hoje é:</label>
+        <textarea placeholder="Escreva com honestidade. Não existe resposta errada." style="min-height: 80px;"></textarea>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goToPhase(0)">← Voltar</button>
+      <button class="btn btn-primary" onclick="goToPhase(2)">Fase 2 →</button>
+    </div>
+  </section>
+
+  <!-- FASE 2 — IDENTIFICAÇÃO -->
+  <section class="phase-section" id="phase2">
+    <div class="phase-header">
+      <div class="phase-number">2</div>
+      <div class="phase-title-wrap">
+        <div class="phase-label">Fase 2</div>
+        <h2>Identificação — Como a Ansiedade Fala em Mim?</h2>
+      </div>
+    </div>
+
+    <div class="phase-intro">
+      A ansiedade não é só um sentimento — ela é uma resposta do sistema nervoso que se manifesta de formas diferentes em cada pessoa. Quanto mais cedo você reconhece seus sinais, mais rápido pode agir.
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sintomas Físicos</div>
+      <div class="checkbox-group">
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Falta de ar ou respiração curta e superficial</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Coração acelerado sem esforço físico</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Tensão ou dor muscular — pescoço, ombros, costas</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Tontura, cabeça pesada ou sensação de desnorteamento</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Suor excessivo nas mãos, axilas ou corpo</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Dor, aperto ou enjoo no estômago</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Insônia ou sono de má qualidade</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Formigamentos, tremores ou calafrios sem febre</span></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sintomas Emocionais e Mentais</div>
+      <div class="checkbox-group">
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Medo constante ou sensação de perigo iminente</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Preocupação excessiva com situações futuras</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Sensação de que algo ruim vai acontecer</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Vontade de chorar sem motivo aparente</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Irritabilidade, impaciência ou explosividade</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Pensamentos acelerados e repetitivos que não param</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Dificuldade de concentração, foco ou memória</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Sensação de esgotamento mental mesmo sem ter feito muito</span></label>
+      </div>
+    </div>
+
+    <div class="quote-block">Reconhecer esses sintomas não é fraqueza. É inteligência emocional.</div>
+
+    <div class="card" style="background: var(--terracota-light); border: none;">
+      <div class="field-group" style="margin-top:0">
+        <label class="field-label" style="color: var(--terracota); font-size: 15px;">✦ O sintoma que mais me incomoda é:</label>
+        <textarea placeholder="Descreva como ele aparece no seu dia a dia..." style="min-height: 80px;"></textarea>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goToPhase(1)">← Fase 1</button>
+      <button class="btn btn-primary" onclick="goToPhase(3)">Fase 3 →</button>
+    </div>
+  </section>
+
+  <!-- FASE 3 — COMPREENSÃO -->
+  <section class="phase-section" id="phase3">
+    <div class="phase-header">
+      <div class="phase-number">3</div>
+      <div class="phase-title-wrap">
+        <div class="phase-label">Fase 3</div>
+        <h2>Compreensão — Reconhecendo os Primeiros Sinais</h2>
+      </div>
+    </div>
+
+    <div class="phase-intro">
+      Uma das habilidades mais poderosas no manejo da ansiedade é reconhecer os sinais precoces — aqueles pequenos avisos que aparecem antes da crise se instalar. Quanto mais cedo você os identifica, mais fácil é intervir.
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sinais Precoces de Sobrecarga Emocional</div>
+      <div class="checkbox-group">
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Fico mais irritada do que o normal com situações pequenas</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Minha mente começa a acelerar sem eu conseguir frear</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Sinto uma inquietação no corpo — vontade de fazer algo, mas sem saber o quê</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Começo a procrastinar ou evitar tarefas simples</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Fico mais distante ou menos presente nas conversas</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Sinto um cansaço que não passa mesmo depois de descansar</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Percebo meu sono mudando — muito sono ou dificuldade de dormir</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Sinto uma pressão no peito ou na cabeça sem causa física</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Começo a catastrofizar — imaginar o pior cenário possível</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Fico em modo de alerta constante, como se algo fosse acontecer</span></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="field-group" style="margin-top:0; margin-bottom: 20px;">
+        <label class="field-label">✦ Meu primeiro sinal de alerta costuma ser:</label>
+        <textarea placeholder="O que você percebe primeiro no seu corpo ou na sua mente?"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">✦ Quando percebo esse sinal, o que geralmente acontece a seguir:</label>
+        <textarea placeholder="Descreva o padrão que se repete..."></textarea>
+      </div>
+    </div>
+
+    <div class="quote-block">Respire fundo agora. Você está fazendo algo importante: está aprendendo a se conhecer.</div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goToPhase(2)">← Fase 2</button>
+      <button class="btn btn-primary" onclick="goToPhase(4)">Fase 4 →</button>
+    </div>
+  </section>
+
+  <!-- FASE 4 — REGULAÇÃO -->
+  <section class="phase-section" id="phase4">
+    <div class="phase-header">
+      <div class="phase-number">4</div>
+      <div class="phase-title-wrap">
+        <div class="phase-label">Fase 4</div>
+        <h2>Regulação — Meu Plano de Resposta</h2>
+      </div>
+    </div>
+
+    <div class="phase-intro">
+      Ter um plano não elimina a ansiedade, mas transforma a relação com ela. Em vez de ser surpreendida, você passa a ter opções. Esse é o início da autonomia emocional.
+    </div>
+
+    <div class="card">
+      <div class="card-title">Quando percebo que a ansiedade está aumentando, posso:</div>
+      <div class="checkbox-group">
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Usar a Respiração Quadrada da jornada: 4 tempos dentro, 4 segura, 4 fora, 4 segura</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Pausar e nomear o que estou sentindo: "Estou com medo, pressão, insegurança"</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Identificar o pensamento automático e perguntar: isso é fato ou interpretação?</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Reduzir estímulos: silenciar celular, sair do ambiente, diminuir a luz</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Fazer a técnica de ancoragem: 5 coisas que vejo, 4 que toco, 3 que ouço (Cap. 6)</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Retornar ao momento presente com atenção plena na respiração</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Caminhar por 10 minutos — o movimento ajuda o sistema nervoso a se regular</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Falar com alguém de confiança</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Escrever o que estou sentindo, sem censura</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Ouvir música calma ou sons da natureza</span></label>
+        <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="custom-checkbox"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-label">Usar o roteiro de meditação guiada do Bônus 3</span></label>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Outro recurso que funciona para mim:</label>
+        <input type="text" placeholder="Escreva aqui...">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Meu Protocolo em 3 Passos</div>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; font-style: italic;">Quanto mais concretos e simples, mais fácil será lembrar deles no momento de maior ansiedade.</p>
+
+      <div class="protocol-step">
+        <span class="step-badge">Passo 1</span>
+        <div class="step-content">
+          <label class="field-label">O primeiro recurso que vou usar:</label>
+          <textarea placeholder="Ex: Respiração quadrada — 4 tempos, parar tudo e respirar." style="min-height: 70px;"></textarea>
+        </div>
+      </div>
+
+      <div class="protocol-step">
+        <span class="step-badge">Passo 2</span>
+        <div class="step-content">
+          <label class="field-label">Se o primeiro não funcionar, vou:</label>
+          <textarea placeholder="Ex: Sair do ambiente e caminhar por 10 minutos." style="min-height: 70px;"></textarea>
+        </div>
+      </div>
+
+      <div class="protocol-step">
+        <span class="step-badge">Passo 3</span>
+        <div class="step-content">
+          <label class="field-label">Para me ancorar de volta, vou:</label>
+          <textarea placeholder="Ex: Técnica dos 5 sentidos — nomear o que vejo, ouço e toco." style="min-height: 70px;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goToPhase(3)">← Fase 3</button>
+      <button class="btn btn-primary" onclick="goToPhase(5)">Fase 5 →</button>
+    </div>
+  </section>
+
+  <!-- FASE 5 — AUTONOMIA -->
+  <section class="phase-section" id="phase5">
+    <div class="phase-header">
+      <div class="phase-number">5</div>
+      <div class="phase-title-wrap">
+        <div class="phase-label">Fase 5</div>
+        <h2>Autonomia — Meu Compromisso Comigo Esta Semana</h2>
+      </div>
+    </div>
+
+    <div class="phase-intro">
+      Não se trata de resolver tudo de uma vez. Trata-se de dar um passo na direção certa — toda semana, toda vez que você escolhe cuidar de si.
+    </div>
+
+    <div class="card">
+      <div class="field-group" style="margin-top:0; margin-bottom: 20px;">
+        <label class="field-label">Esta semana, quando sentir ansiedade, vou fazer:</label>
+        <textarea placeholder="Seja específica — quanto mais concreto, mais fácil de lembrar."></textarea>
+      </div>
+      <div class="divider"></div>
+      <div class="field-group" style="margin-bottom: 20px;">
+        <label class="field-label">Uma coisa que vou reduzir ou eliminar da minha rotina:</label>
+        <textarea placeholder="Ex: Reduzir o tempo nas redes sociais antes de dormir."></textarea>
+      </div>
+      <div class="divider"></div>
+      <div class="field-group" style="margin-bottom: 20px;">
+        <label class="field-label">Uma prática de autocuidado que vou incluir nos meus dias:</label>
+        <textarea placeholder="Ex: 10 minutos de caminhada ao ar livre toda manhã."></textarea>
+      </div>
+      <div class="divider"></div>
+      <div class="field-group">
+        <label class="field-label">A pessoa com quem posso conversar quando precisar de apoio:</label>
+        <input type="text" placeholder="Nome e como entrar em contato...">
+      </div>
+    </div>
+
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goToPhase(4)">← Fase 4</button>
+      <button class="btn btn-primary" onclick="goToPhase(6)">Meu Mapa →</button>
+    </div>
+  </section>
+
+  <!-- FASE 6 — MEU MAPA PESSOAL -->
+  <section class="phase-section" id="phase6">
+    <div class="phase-header">
+      <div class="phase-number" style="background: var(--salvia);">✦</div>
+      <div class="phase-title-wrap">
+        <div class="phase-label" style="color: var(--salvia);">Integração Final</div>
+        <h2>Meu Mapa Pessoal da Ansiedade</h2>
+      </div>
+    </div>
+
+    <div class="phase-intro">
+      Este exercício integra tudo que você identificou nas páginas anteriores. Preencha com honestidade. Não existe resposta errada — existe a sua verdade.
+    </div>
+
+    <div class="card">
+      <div class="map-grid">
+        <div class="map-item">
+          <div class="field-group" style="margin-top:0">
+            <label class="field-label">Situações que mais ativam minha ansiedade:</label>
+            <textarea style="min-height: 100px;" placeholder="Liste as principais..."></textarea>
+          </div>
+        </div>
+        <div class="map-item">
+          <div class="field-group" style="margin-top:0">
+            <label class="field-label">Pensamentos recorrentes nesses momentos:</label>
+            <textarea style="min-height: 100px;" placeholder="O que sua mente diz?"></textarea>
+          </div>
+        </div>
+        <div class="map-item">
+          <div class="field-group" style="margin-top:0">
+            <label class="field-label">Reações físicas que percebo no meu corpo:</label>
+            <textarea style="min-height: 100px;" placeholder="Como o corpo responde?"></textarea>
+          </div>
+        </div>
+        <div class="map-item">
+          <div class="field-group" style="margin-top:0">
+            <label class="field-label">Reações emocionais que experimento:</label>
+            <textarea style="min-height: 100px;" placeholder="O que você sente?"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field-group">
+        <label class="field-label">Estratégias que funcionam para mim:</label>
+        <textarea placeholder="O que já ajudou? O que você quer experimentar?"></textarea>
+      </div>
+
+      <div class="field-group" style="margin-top: 20px;">
+        <label class="field-label" style="color: var(--salvia); font-size: 15px;">✦ Um pequeno passo concreto que posso dar esta semana:</label>
+        <textarea placeholder="Escreva algo simples, possível e específico."></textarea>
+      </div>
+    </div>
+
+
+    <div class="commitment-card" style="margin-bottom: 32px;">
+      <h3>Meu Compromisso</h3>
+      <p>Este é um ato de cuidado com você mesma. Reconhecer que você precisa e merece atenção é um passo de coragem.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="field-group" style="margin-top:0">
+          <label class="field-label">Eu,</label>
+          <input type="text" id="commitName" placeholder="seu nome...">
+        </div>
+        <div class="field-group" style="margin-top:0">
+          <label class="field-label">Data:</label>
+          <input type="text" id="dateField" placeholder="dd/mm/aaaa">
+        </div>
+      </div>
+      <p style="margin: 16px 0 20px; font-size: 14px; color: rgba(255,255,255,0.6);">me comprometo a cuidar de mim com atenção e compaixão esta semana.</p>
+      <button id="commitBtn" style="width:100%;padding:16px 24px;border-radius:50px;border:none;background:linear-gradient(135deg,#C4785A,#7A9B76);color:white;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;cursor:pointer;margin-top:8px;">✨ Confirmo meu compromisso</button>
+      <div id="commitConfirmed" style="display:none;margin-top:16px;text-align:center;">
+        <p style="color:#7A9B76;font-size:13px;font-family:Arial,sans-serif;margin-bottom:12px;">✓ Compromisso assumido em <span id="commitDateTime"></span></p>
+        <button id="replayBtn" style="background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.35);border-radius:50px;padding:10px 22px;font-family:Arial,sans-serif;font-size:13px;cursor:pointer;">🎉 Rever celebração</button>
+      </div>
+    </div>
+
+    <!-- CLOSING -->
+    <div class="closing-page">
+      <div class="closing-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <path d="M18 4C10.268 4 4 10.268 4 18s6.268 14 14 14 14-6.268 14-14S25.732 4 18 4z" fill="#7A9B76" opacity="0.3"/>
+          <path d="M12 18l4 4 8-8" stroke="#7A9B76" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>Você chegou até aqui.</h2>
+      <p>E isso já diz muito sobre quem você é.</p>
+      <p>A jornada para viver com menos ansiedade não é uma linha reta. Há dias de clareza e dias de névoa. Tudo isso é parte do processo.</p>
+      <p>Você não precisa estar completamente bem para dar o próximo passo. Você só precisa dar um passo — mesmo que pequeno, mesmo que imperfeito.</p>
+      <p><strong>Agora leve este mapa para a jornada. A Prática 1 está esperando por você.</strong></p>
+      <a href="https://psianaluiza.github.io/workbook-sobreviver" class="closing-cta" target="_blank">Acessar a Jornada Guiada →</a>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goToPhase(5)">← Fase 5</button>
+      <button class="btn btn-primary" onclick="window.print()">🖨 Imprimir / Salvar PDF</button>
+    </div>
+  </section>
+
+</main>
+
+<button class="save-btn" id="saveBtn" onclick="saveProgress()">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 2H3a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V3a1 1 0 00-1-1z" stroke="white" stroke-width="1.5"/><path d="M5 2v4h6V2M5 9h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+  <span id="saveBtnLabel">Salvar progresso</span>
+</button>
+<div class="save-toast" id="saveToast">✓ Progresso salvo</div>
+
+<script>
+  let currentPhase = 0;
+  const totalPhases = 7;
+
+  // Set today's date
+  const d = new Date();
+  const df = document.getElementById('dateField');
+  if (df) df.placeholder = `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+
+  function goToPhase(n) {
+    document.querySelectorAll('.phase-section').forEach((s, i) => {
+      s.classList.toggle('active', i === n);
+    });
+    document.querySelectorAll('.phase-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === n);
+    });
+    currentPhase = n;
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Scroll nav btn into view
+    const activeNav = document.getElementById('nav' + n);
+    if (activeNav) activeNav.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  function updateProgress() {
+    const pct = (currentPhase / (totalPhases - 1)) * 100;
+    document.getElementById('progressBar').style.width = pct + '%';
+  }
+
+  function toggleCheck(label) {
+    const cb = label.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    label.classList.toggle('checked', cb.checked);
+  }
+
+  function saveProgress() {
+    try {
+      const data = {};
+      document.querySelectorAll('textarea, input[type="text"]').forEach((el, i) => {
+        if (el.value) data['field_' + i] = el.value;
+      });
+      const checks = [];
+      document.querySelectorAll('.checkbox-item.checked .checkbox-label').forEach(el => {
+        checks.push(el.textContent.trim());
+      });
+      data['checked_items'] = checks;
+      localStorage.setItem('mapaGatilhos', JSON.stringify(data));
+
+      const toast = document.getElementById('saveToast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    } catch(e) {
+      alert('Progresso salvo apenas nesta sessão.');
+    }
+  }
+
+  // Load saved progress
+  try {
+    const saved = localStorage.getItem('mapaGatilhos');
+    if (saved) {
+      const data = JSON.parse(saved);
+      const fields = document.querySelectorAll('textarea, input[type="text"]');
+      fields.forEach((el, i) => {
+        if (data['field_' + i]) el.value = data['field_' + i];
+      });
+    }
+  } catch(e) {}
+
+  // Track unsaved changes
+  let hasUnsavedChanges = false;
+  let lastSavedData = localStorage.getItem('mapaGatilhos') || '';
+
+  function checkForChanges() {
+    const data = {};
+    document.querySelectorAll('textarea, input[type="text"]').forEach((el, i) => {
+      if (el.value) data['field_' + i] = el.value;
+    });
+    const checks = [];
+    document.querySelectorAll('.checkbox-item.checked .checkbox-label').forEach(el => {
+      checks.push(el.textContent.trim());
+    });
+    data['checked_items'] = checks;
+    const current = JSON.stringify(data);
+    hasUnsavedChanges = (current !== lastSavedData && current !== '{"checked_items":[]}');
+  }
+
+  // Update lastSavedData after each save
+  const originalSave = saveProgress;
+  window.saveProgress = function() {
+    originalSave();
+    try {
+      lastSavedData = localStorage.getItem('mapaGatilhos') || '';
+      hasUnsavedChanges = false;
+      document.getElementById('unsaved-dot').style.display = 'none';
+    } catch(e) {}
+  }
+
+  // Listen for any input changes
+  document.addEventListener('input', () => {
+    checkForChanges();
+    if (hasUnsavedChanges) {
+      document.getElementById('unsaved-dot').style.display = 'inline-block';
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.checkbox-item')) {
+      setTimeout(() => {
+        checkForChanges();
+        if (hasUnsavedChanges) {
+          document.getElementById('unsaved-dot').style.display = 'inline-block';
+        }
+      }, 100);
+    }
+  });
+
+  // Show modal on page exit if unsaved
+  window.addEventListener('beforeunload', (e) => {
+    checkForChanges();
+    if (hasUnsavedChanges) {
+      e.preventDefault();
+      e.returnValue = '';
+      return '';
+    }
+  });
+
+  // Custom modal for back/close attempts on mobile
+  function showUnsavedModal() {
+    document.getElementById('unsaved-modal').style.display = 'flex';
+  }
+  function closeUnsavedModal() {
+    document.getElementById('unsaved-modal').style.display = 'none';
+  }
+  function saveAndClose() {
+    saveProgress();
+    closeUnsavedModal();
+  }
+
+
+  // ---- AUTO-SAVE ----
+  let autoSaveTimer = null;
+  function getFormData() {
+    const data = {};
+    document.querySelectorAll('textarea, input[type="text"]').forEach((el, i) => {
+      if (el.value) data['f' + i] = el.value;
+    });
+    const checks = [];
+    document.querySelectorAll('.checkbox-item.checked .checkbox-label').forEach(el => checks.push(el.textContent.trim()));
+    data['checks'] = checks;
+    return data;
+  }
+  function autoSave() {
+    try {
+      const data = getFormData();
+      if (Object.keys(data).length <= 1 && data.checks.length === 0) return;
+      localStorage.setItem('mapaGatilhos', JSON.stringify(data));
+      const now = new Date();
+      const t = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+      const lbl = document.getElementById('saveBtnLabel');
+      if (lbl) lbl.textContent = 'Salvo às ' + t;
+    } catch(e) {}
+  }
+  document.addEventListener('input', () => { clearTimeout(autoSaveTimer); autoSaveTimer = setTimeout(autoSave, 800); });
+  document.addEventListener('click', e => { if (e.target.closest('.checkbox-item')) setTimeout(autoSave, 150); });
+  window.addEventListener('beforeunload', autoSave);
+
+  // ---- LOAD SAVED (text + checkboxes) ----
+  try {
+    const saved = localStorage.getItem('mapaGatilhos');
+    if (saved) {
+      const data = JSON.parse(saved);
+      document.querySelectorAll('textarea, input[type="text"]').forEach((el, i) => { if (data['f'+i]) el.value = data['f'+i]; });
+      if (data.checks && data.checks.length > 0) {
+        document.querySelectorAll('.checkbox-item').forEach(item => {
+          const lbl = item.querySelector('.checkbox-label');
+          if (lbl && data.checks.includes(lbl.textContent.trim())) {
+            item.classList.add('checked');
+            const cb = item.querySelector('input[type="checkbox"]');
+            if (cb) cb.checked = true;
+          }
+        });
+      }
+      const saveLbl = document.getElementById('saveBtnLabel');
+      if (saveLbl) saveLbl.textContent = 'Progresso salvo';
+    }
+  } catch(e) {}
+
+  // ---- COMMITMENT & CELEBRATION ----
+  const phrases = [
+    "Você acabou de dar o passo mais importante. O cuidado com você mesma começa agora.",
+    "Coragem não é a ausência do medo. É decidir que você vale mais do que ele.",
+    "Cada pequeno passo na direção certa muda o destino de toda uma jornada.",
+    "Você não precisa estar completamente bem para começar. Você só precisa começar."
+  ];
+
+  function playJingle() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      [523,659,784,1047,784,1047,1319].forEach((f,i) => {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.type = 'sine'; o.frequency.value = f;
+        const t = ctx.currentTime + i*0.13;
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(0.3, t+0.04);
+        g.gain.exponentialRampToValueAtTime(0.001, t+0.3);
+        o.start(t); o.stop(t+0.35);
+      });
+    } catch(e) {}
+  }
+
+  function launchFireworks() {
+    const canvas = document.getElementById('fireworksCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const colors = ['#FF3366','#FF6B00','#FFD700','#00E676','#2979FF','#AA00FF','#FF1744','#00BCD4','#76FF03','#FF4081'];
+    const particles = [];
+    function burst(x, y) {
+      for (let i = 0; i < 80; i++) {
+        const a = (Math.PI*2/80)*i, s = 3+Math.random()*6;
+        particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,color:colors[Math.floor(Math.random()*colors.length)],alpha:1,size:3+Math.random()*4,decay:0.012+Math.random()*0.008,gravity:0.12});
+      }
+    }
+    [[0.2,0.3,0],[0.8,0.25,400],[0.5,0.15,800],[0.15,0.55,1200],[0.85,0.5,1600],[0.5,0.35,2000],[0.3,0.2,2600],[0.7,0.45,3200]].forEach(([rx,ry,d]) => {
+      setTimeout(() => burst(canvas.width*rx, canvas.height*ry), d);
+    });
+    let frame = 0;
+    function animate() {
+      ctx.fillStyle = 'rgba(0,0,0,0.15)';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      particles.forEach(p => { p.x+=p.vx; p.y+=p.vy; p.vy+=p.gravity; p.vx*=0.98; p.alpha-=p.decay; ctx.globalAlpha=Math.max(0,p.alpha); ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill(); });
+      ctx.globalAlpha=1;
+      for (let i=particles.length-1;i>=0;i--) { if(particles[i].alpha<=0) particles.splice(i,1); }
+      if (++frame < 300 || particles.length > 0) requestAnimationFrame(animate);
+      else ctx.clearRect(0,0,canvas.width,canvas.height);
+    }
+    animate();
+  }
+
+  function showCelebration() {
+    const overlay = document.getElementById('celebrationOverlay');
+    overlay.style.display = 'block';
+    document.getElementById('celebrationText').textContent = '"' + phrases[Math.floor(Math.random()*phrases.length)] + '"';
+    setTimeout(launchFireworks, 100);
+    playJingle();
+    setTimeout(hideCelebration, 12000);
+  }
+
+  function hideCelebration() {
+    const overlay = document.getElementById('celebrationOverlay');
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.5s';
+    setTimeout(() => { overlay.style.display='none'; overlay.style.opacity='1'; overlay.style.transition=''; }, 500);
+  }
+
+  function setupCommitment() {
+    const btn = document.getElementById('commitBtn');
+    const replayBtn = document.getElementById('replayBtn');
+    const closeBtn = document.getElementById('closeCelebBtn');
+    if (btn) btn.addEventListener('click', function() {
+      const now = new Date();
+      const ds = String(now.getDate()).padStart(2,'0')+'/'+String(now.getMonth()+1).padStart(2,'0')+'/'+now.getFullYear()+' às '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+      btn.textContent = '✓ Compromisso assumido';
+      btn.style.background = '#7A9B76';
+      btn.disabled = true;
+      document.getElementById('commitDateTime').textContent = ds;
+      document.getElementById('commitConfirmed').style.display = 'block';
+      try { localStorage.setItem('commitmentDone', ds); } catch(e) {}
+      showCelebration();
+    });
+    if (replayBtn) replayBtn.addEventListener('click', showCelebration);
+    if (closeBtn) closeBtn.addEventListener('click', hideCelebration);
+    // Restore commitment state
+    try {
+      const saved = localStorage.getItem('commitmentDone');
+      if (saved && btn) {
+        btn.textContent = '✓ Compromisso assumido';
+        btn.style.background = '#7A9B76';
+        btn.disabled = true;
+        document.getElementById('commitDateTime').textContent = saved;
+        document.getElementById('commitConfirmed').style.display = 'block';
+      }
+    } catch(e) {}
+  }
+
+  // Run setup after DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCommitment);
+  } else {
+    setupCommitment();
+  }
+
+  updateProgress();
+</script>
+
+<!-- UNSAVED INDICATOR -->
+<style>
+  #unsaved-dot {
+    display: none;
+    width: 8px; height: 8px;
+    background: var(--terracota);
+    border-radius: 50%;
+    position: absolute;
+    top: -2px; right: -2px;
+  }
+  .save-btn-wrap { position: fixed; bottom: 24px; right: 20px; z-index: 80; }
+
+  /* MODAL */
+  #unsaved-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(44,44,42,0.6);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-box {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 28px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  }
+  .modal-icon {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--terracota-light);
+    margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-icon svg { width: 28px; height: 28px; }
+  .modal-box h3 {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    color: var(--grafite);
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  .modal-box p {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .modal-btn-save {
+    background: var(--terracota);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .modal-btn-save:hover { background: #B5674A; }
+  .modal-btn-dismiss {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1.5px solid var(--linha);
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .modal-btn-dismiss:hover { border-color: var(--grafite); color: var(--grafite); }
+</style>
+
+<!-- UNSAVED MODAL -->
+<div id="unsaved-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <div class="modal-icon">
+      <svg viewBox="0 0 28 28" fill="none">
+        <path d="M14 4C8.477 4 4 8.477 4 14s4.477 10 10 10 10-4.477 10-10S19.523 4 14 4z" fill="#F0DDD5"/>
+        <path d="M14 9v6M14 18v.5" stroke="#C4785A" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h3 id="modal-title">Você tem respostas não salvas</h3>
+    <p>Antes de sair, salve seu progresso para não perder o que preencheu.</p>
+    <div class="modal-actions">
+      <button class="modal-btn-save" onclick="saveAndClose()">Salvar meu progresso</button>
+      <button class="modal-btn-dismiss" onclick="closeUnsavedModal()">Continuar aqui</button>
+    </div>
   </div>
 </div>
 
+<!-- UNSAVED DOT on save button -->
 <script>
-// BREATHING
-// ==============================================
-const bPhases = [
-  { label:'INSPIRE\npelo nariz', msg:'"Inspiro tranquilidade..."', expand:true  },
-  { label:'SEGURE\nsuavemente',  msg:'Segure com leveza...',       expand:true  },
-  { label:'EXPIRE\npela boca',   msg:'"Expiro tensão..."',          expand:false },
-  { label:'SEGURE\nsuavemente',  msg:'Solte completamente...',      expand:false },
-];
-let bRunning=false, bInterval=null, bPhase=0, bSec=4, bCycle=0;
-const B_TOTAL = 6;
+  // Wrap save button with relative positioning for the dot
+  const saveBtn = document.querySelector('.save-btn');
+  if (saveBtn) {
+    saveBtn.style.position = 'relative';
+    const dot = document.createElement('span');
+    dot.id = 'unsaved-dot';
+    saveBtn.appendChild(dot);
+  }
 
-function toggleBreath() { bRunning ? stopBreath() : startBreath(); }
-
-function startBreath() {
-  bRunning=true; bPhase=0; bSec=4; bCycle=0;
-  document.getElementById('breathBtn').textContent='⏹ Pausar';
-  runPhase();
-  document.getElementById('breathCounter').textContent='4';
-  bInterval = setInterval(bTick, 1000);
-}
-
-function stopBreath() {
-  bRunning=false; clearInterval(bInterval);
-  document.getElementById('breathBtn').textContent='▶ Iniciar';
-  document.getElementById('breathLabel').textContent='Pronta?';
-  document.getElementById('breathCounter').textContent='—';
-  document.getElementById('breathMsg').textContent='Inspire tranquilidade... expire tensão...';
-  document.getElementById('breathCircle').style.transform='';
-  for(let i=0;i<4;i++) document.getElementById('bs'+i).classList.remove('active');
-  document.getElementById('breathCycles').textContent='';
-}
-
-function runPhase() {
-  for(let i=0;i<4;i++) document.getElementById('bs'+i).classList.remove('active');
-  document.getElementById('bs'+bPhase).classList.add('active');
-  const p = bPhases[bPhase];
-  document.getElementById('breathLabel').textContent = p.label;
-  document.getElementById('breathMsg').textContent = p.msg;
-  document.getElementById('breathCircle').style.transform = p.expand ? 'scale(1.25)' : 'scale(1)';
-}
-
-function bTick() {
-  bSec--;
-  if (bSec <= 0) {
-    bPhase++;
-    if (bPhase === 4) {
-      bPhase = 0; bCycle++;
-      document.getElementById('breathCycles').textContent = `Ciclo ${bCycle} de ${B_TOTAL} concluído`;
-      if (bCycle >= B_TOTAL) {
-        stopBreath();
-        document.getElementById('breathMsg').textContent = '✓ Prática concluída. Você está mais calma agora.';
-        document.getElementById('breathCycles').textContent = `${B_TOTAL} ciclos completos ✓`;
-        celebrar('respiracao');
-        return;
-      }
+  // Show modal when user tries to navigate away on mobile (back button)
+  window.addEventListener('popstate', (e) => {
+    checkForChanges();
+    if (hasUnsavedChanges) {
+      history.pushState(null, '', window.location.href);
+      showUnsavedModal();
     }
-    bSec = 4;
-    runPhase();
-    document.getElementById('breathCounter').textContent = '4';
-  } else {
-    document.getElementById('breathCounter').textContent = String(bSec);
-  }
-}
-
-// ==============================================
-// CELEBRATION
-// ==============================================
-const FRASES = [
-  "Você acabou de dar o passo mais importante. O cuidado com você mesma começa agora.",
-  "Coragem não é a ausência do medo. É decidir que você vale mais do que ele.",
-  "Cada pequeno passo na direção certa muda o destino de toda uma jornada.",
-  "Você não precisa estar completamente bem para começar. Você só precisa começar."
-];
-let lastCelTipo = 'compromisso';
-
-function celebrar(tipo) {
-  lastCelTipo = tipo;
-  if (tipo === 'respiracao') {
-    document.getElementById('cel-emoji').textContent = '🌬️';
-    document.getElementById('cel-texto').textContent = 'Você completou sua prática de respiração!';
-    document.getElementById('cel-sub').textContent = 'Seu sistema nervoso agradece. Você está mais calma, mais presente, mais leve.';
-  } else {
-    document.getElementById('cel-emoji').textContent = '🌿';
-    document.getElementById('cel-texto').textContent = FRASES[Math.floor(Math.random()*FRASES.length)];
-    document.getElementById('cel-sub').textContent = 'Sua jornada de cuidado começa com este momento de coragem.';
-    document.getElementById('compromisso-feito').style.display = 'block';
-    document.getElementById('btn-rever').style.display = 'inline-block';
-  }
-  abrirCel(tipo);
-}
-
-function abrirCel(tipo) {
-  lastCelTipo = tipo;
-  document.getElementById('cel-overlay').classList.add('show');
-  lancarConfete();
-  tocarJingle();
-}
-
-function fecharCel() {
-  document.getElementById('cel-overlay').classList.remove('show');
-}
-
-// Confetti
-function lancarConfete() {
-  const canvas = document.getElementById('confettiCanvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-  const colors = ['#C4785A','#7A9B76','#F5EFE6','#F0DDD5','#E8F0E6','#fff'];
-  const p = Array.from({length:150}, () => ({
-    x: Math.random()*canvas.width,
-    y: Math.random()*canvas.height - canvas.height,
-    r: Math.random()*7+3,
-    c: colors[Math.floor(Math.random()*colors.length)],
-    t: Math.random()*10-5, ta: 0, ts: Math.random()*.1+.05
-  }));
-  let f=0;
-  (function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    p.forEach(q=>{ctx.beginPath();ctx.lineWidth=q.r;ctx.strokeStyle=q.c;ctx.moveTo(q.x+q.t+q.r/4,q.y);ctx.lineTo(q.x+q.t,q.y+q.t+q.r/4);ctx.stroke();});
-    p.forEach(q=>{q.ta+=q.ts;q.y+=(Math.cos(f/20)+1+q.r/2)*1.5;q.t=Math.sin(q.ta)*12;if(q.y>canvas.height){q.y=-10;q.x=Math.random()*canvas.width;}});
-    f++; if(f<260) requestAnimationFrame(draw); else ctx.clearRect(0,0,canvas.width,canvas.height);
-  })();
-}
-
-// Jingle
-function tocarJingle() {
-  try {
-    const c = new (window.AudioContext||window.webkitAudioContext)();
-    [523,659,784,1047,784,659,523].reduce((t,freq)=>{
-      const o=c.createOscillator(), g=c.createGain();
-      o.connect(g); g.connect(c.destination);
-      o.frequency.value=freq; o.type='sine';
-      g.gain.setValueAtTime(0.15,t);
-      g.gain.exponentialRampToValueAtTime(0.001,t+.3);
-      o.start(t); o.stop(t+.3); return t+.2;
-    }, c.currentTime);
-  } catch(e){}
-}
-
-// ==============================================
-// SAVE / RESTORE
-// ==============================================
-const SAVE_KEY = 'bonus3_v3';
-
-function gatherData() {
-  const d = {};
-  ['g5','g4','g3','g2','g1','espaco-seguro','sentimento-agora'].forEach(id => {
-    const el = document.getElementById(id); if(el) d[id]=el.value;
   });
-  for(let i=0;i<5;i++) { const el=document.querySelector('#af'+i+' input'); if(el) d['af'+i]=el.checked; }
-  ['p0','p1','p2','p3','p4','p5','p6'].forEach(p=>{
-    ['a','b','c'].forEach(c=>{ const el=document.getElementById(p+c); if(el) d[p+c]=el.value; });
-  });
-  return d;
-}
-
-function restoreData(d) {
-  ['g5','g4','g3','g2','g1','espaco-seguro','sentimento-agora'].forEach(id=>{
-    const el=document.getElementById(id); if(el&&d[id]!==undefined) el.value=d[id];
-  });
-  for(let i=0;i<5;i++) {
-    const el=document.querySelector('#af'+i+' input');
-    if(el&&d['af'+i]) { el.checked=true; document.getElementById('af'+i).classList.add('checked'); }
-  }
-  ['p0','p1','p2','p3','p4','p5','p6'].forEach(p=>{
-    ['a','b','c'].forEach(c=>{ const el=document.getElementById(p+c); if(el&&d[p+c]!==undefined) el.value=d[p+c]; });
-  });
-}
-
-function toggleAf(i) {
-  const cb = document.querySelector('#af'+i+' input');
-  document.getElementById('af'+i).classList.toggle('checked', cb.checked);
-}
-
-let saveTO=null;
-function autoSave() {
-  clearTimeout(saveTO);
-  saveTO = setTimeout(()=>{
-    localStorage.setItem(SAVE_KEY, JSON.stringify(gatherData()));
-    const n=new Date();
-    document.getElementById('saveFab').textContent=`✓ Salvo às ${n.getHours().toString().padStart(2,'0')}:${n.getMinutes().toString().padStart(2,'0')}`;
-    setTimeout(()=>document.getElementById('saveFab').textContent='💾 Salvar', 3000);
-  }, 800);
-}
-function manualSave() {
-  localStorage.setItem(SAVE_KEY, JSON.stringify(gatherData()));
-  const n=new Date();
-  document.getElementById('saveFab').textContent=`✓ Salvo às ${n.getHours().toString().padStart(2,'0')}:${n.getMinutes().toString().padStart(2,'0')}`;
-  setTimeout(()=>document.getElementById('saveFab').textContent='💾 Salvar', 3000);
-}
-
-window.addEventListener('load',()=>{
-  try { const s=localStorage.getItem(SAVE_KEY); if(s) restoreData(JSON.parse(s)); } catch(e){}
-});
-
-// Nav + progress
-const secs2 = document.querySelectorAll('.section');
-const navAs = document.querySelectorAll('.nav a');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  secs2.forEach(s=>{ if(window.scrollY>=s.offsetTop-120) cur=s.id; });
-  navAs.forEach(a=>{ a.classList.remove('active'); if(a.getAttribute('href')==='#'+cur) a.classList.add('active'); });
-  const dh=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById('progressBar').style.width=(dh>0?window.scrollY/dh*100:0)+'%';
-});
+  history.pushState(null, '', window.location.href);
 </script>
+
+<!-- CELEBRATION OVERLAY -->
+<div id="celebrationOverlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;overflow:hidden;background:rgba(0,0,0,0.5);">
+  <canvas id="fireworksCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#FFF;border-radius:24px;padding:36px 32px;max-width:380px;width:90vw;text-align:center;box-shadow:0 16px 60px rgba(0,0,0,0.3);pointer-events:all;z-index:10000;animation:popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275);">
+    <div style="font-size:52px;margin-bottom:20px;line-height:1;">🎉✨🎊</div>
+    <p id="celebrationText" style="font-family:Georgia,serif;font-size:18px;font-style:italic;color:#2C2C2A;line-height:1.8;margin-bottom:28px;"></p>
+    <p style="font-family:Arial,sans-serif;font-size:12px;color:#999;margin-bottom:20px;">Fecha automaticamente em 12 segundos</p>
+    <button id="closeCelebBtn" style="background:linear-gradient(135deg,#C4785A,#7A9B76);color:white;border:none;border-radius:50px;padding:16px 32px;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;cursor:pointer;width:100%;">Continuar minha jornada →</button>
+  </div>
+</div>
+
+<style>
+@keyframes popIn {
+  from { opacity:0; transform:translate(-50%,-50%) scale(0.7); }
+  to { opacity:1; transform:translate(-50%,-50%) scale(1); }
+}
+</style>
 </body>
 </html>
