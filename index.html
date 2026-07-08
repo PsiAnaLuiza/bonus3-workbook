@@ -242,6 +242,56 @@
 </nav>
 <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
 
+<section id="pergunta-abertura" style="max-width:720px;margin:24px auto 0;padding:0 20px;">
+<div style="background:var(--cream);border-left:4px solid var(--terracota);border-radius:12px;padding:28px 24px;">
+<p style="font-size:11px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;color:var(--terracota);margin-bottom:10px;">MOMENTO DE HONESTIDADE</p>
+<h2 style="font-family:Georgia,serif;font-size:19px;color:var(--grafite);line-height:1.4;margin-bottom:14px;">Nem toda voz que fala alto dentro de você está dizendo a verdade.</h2>
+<p style="color:#555;font-size:14px;line-height:1.7;margin-bottom:18px;">Antes de seguirmos, responda apenas uma pergunta. Ela vai ajudar você a perceber qual pensamento tem ocupado mais espaço na sua mente ultimamente.</p>
+<p style="font-weight:bold;font-size:14px;color:var(--grafite);margin-bottom:10px;">Qual desses pensamentos mais se repete na sua cabeça?</p>
+<div id="paOpcoesB3" style="display:grid;gap:8px;">
+<div class="pa-opcao-b3" data-op="1" style="background:var(--bg);border:1.5px solid var(--linha);border-radius:8px;padding:13px 15px;cursor:pointer;transition:all .15s;font-size:14px;color:#444;line-height:1.5;">"Alguma coisa ruim vai acontecer."</div>
+<div class="pa-opcao-b3" data-op="2" style="background:var(--bg);border:1.5px solid var(--linha);border-radius:8px;padding:13px 15px;cursor:pointer;transition:all .15s;font-size:14px;color:#444;line-height:1.5;">"Eu deveria conseguir dar conta de tudo melhor do que consigo."</div>
+<div class="pa-opcao-b3" data-op="3" style="background:var(--bg);border:1.5px solid var(--linha);border-radius:8px;padding:13px 15px;cursor:pointer;transition:all .15s;font-size:14px;color:#444;line-height:1.5;">"Se eu parar, tudo desmorona."</div>
+</div>
+<div id="paObrigadaB3" style="display:none;margin-top:16px;font-size:14px;color:var(--terracota);font-style:italic;text-align:center;">Obrigada. Guarde esse pensamento. Ao longo desta etapa, você vai aprender a reconhecer quando essa voz aparece e a não deixar que ela conduza suas decisões.</div>
+</div>
+</section>
+
+<script>
+(function(){
+  var wrap = document.getElementById('paOpcoesB3');
+  var obrigada = document.getElementById('paObrigadaB3');
+  if(!wrap) return;
+  var opcoes = wrap.querySelectorAll('.pa-opcao-b3');
+  function limpar(){
+    opcoes.forEach(function(o){ o.style.background='var(--bg)'; o.style.borderColor='var(--linha)'; o.style.color='#444'; });
+  }
+  function marcar(el){
+    limpar();
+    el.style.background='var(--salvia-light)'; el.style.borderColor='var(--salvia)'; el.style.color='var(--grafite)';
+  }
+  var saved = localStorage.getItem('pa_resposta_b3');
+  if(saved){
+    opcoes.forEach(function(el){ if(el.getAttribute('data-op')===saved) marcar(el); });
+    obrigada.style.display='block';
+  }
+  opcoes.forEach(function(el){
+    el.addEventListener('click', function(){
+      var jaMarcado = el.getAttribute('data-op') === localStorage.getItem('pa_resposta_b3');
+      if(jaMarcado){
+        limpar();
+        localStorage.removeItem('pa_resposta_b3');
+        obrigada.style.display='none';
+      } else {
+        marcar(el);
+        localStorage.setItem('pa_resposta_b3', el.getAttribute('data-op'));
+        obrigada.style.display='block';
+      }
+    });
+  });
+})();
+</script>
+
 <!-- ACOLHIMENTO -->
 <section class="section" id="acolhimento">
   <div class="acolhimento-card">
